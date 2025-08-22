@@ -1,0 +1,357 @@
+# Create a complete, well-structured HTML file demonstrating JavaScript operators
+html_content = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Operators — Explained with Live Examples</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:#121a2b; --ink:#e8eefc; --muted:#a9b4ce; --accent:#71a7ff;
+      --ok:#9be28d; --warn:#ffd27e; --bad:#ff9aa2; --code:#0c1426;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      background:var(--bg); color:var(--ink); line-height:1.6; padding:32px 16px;
+    }
+    .wrap{max-width:1000px; margin:0 auto}
+    h1,h2{line-height:1.2}
+    h1{font-size:2rem; margin:0 0 8px}
+    p.lead{color:var(--muted); margin-top:0}
+    section{background:var(--card); border:1px solid #1c2742; border-radius:16px; padding:20px; margin:18px 0; box-shadow:0 10px 24px rgba(0,0,0,.18)}
+    .grid{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width: 800px){ .grid{grid-template-columns: 1.2fr 1fr} }
+    table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px}
+    th, td{padding:10px 12px; text-align:left; vertical-align:top; border-bottom:1px solid #223057}
+    th{background:#18223b; position:sticky; top:0; z-index:1}
+    tr:last-child td{border-bottom:none}
+    code,kbd{background:var(--code); padding:.15rem .35rem; border-radius:8px}
+    .note{color:var(--muted); font-size:.95rem}
+    .ok{color:var(--ok)} .bad{color:var(--bad)} .warn{color:var(--warn)}
+    .pill{display:inline-block; padding:.15rem .5rem; border-radius:999px; background:#18223b; color:var(--accent); font-weight:600; font-size:.8rem}
+    footer{color:var(--muted); margin-top:24px; font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>JavaScript Operators — Explained with Live Examples</h1>
+    <p class="lead">Open this file in any browser. All results are computed by the script below, so you know the outputs are real.</p>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>1) Arithmetic Operators <span class="pill">+, −, ×, ÷, %, **</span></h2>
+          <p class="note">These perform math on numbers.</p>
+          <table id="tbl-arith">
+            <thead><tr><th>Expression</th><th>Meaning</th><th>Result</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>// Quick reference
++, -, *, /    // basic math
+%             // remainder
+**            // exponent (power)
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>2) Assignment Operators <span class="pill">=, +=, -=, *=, /=, %=, **=</span></h2>
+          <p class="note">Assign or update a variable in-place.</p>
+          <table id="tbl-assign">
+            <thead><tr><th>Before</th><th>Operation</th><th>After</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>let x = 10;
+x += 5; // 15
+x *= 2; // 30
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>3) Comparison Operators <span class="pill">==, ===, !=, !==, &lt;, &gt;, &lt;=, &gt;=</span></h2>
+          <p class="note">Return <code>true</code> or <code>false</code>.</p>
+          <table id="tbl-comp">
+            <thead><tr><th>Question</th><th>Why</th><th>Answer</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>// Tip: Prefer strict equality
+5 == "5"   // true (performs coercion) ❌
+5 === "5"  // false (type-safe) ✅
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>4) Logical Operators <span class="pill">&&, ||, !</span></h2>
+          <p class="note"><code>&amp;&amp;</code> needs both true, <code>||</code> needs at least one true, <code>!</code> flips truthiness.</p>
+          <table id="tbl-logic">
+            <thead><tr><th>Expression</th><th>Meaning</th><th>Result</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>// Short-circuiting
+"a" && "b"   // "b"  (returns last truthy)
+0 || "fallback" // "fallback"
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>5) Increment / Decrement <span class="pill">++, -- (pre &amp; post)</span></h2>
+          <p class="note"><code>++x</code> changes then returns. <code>x++</code> returns then changes.</p>
+          <table id="tbl-inc">
+            <thead><tr><th>Form</th><th>Shown value</th><th>Final x</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>let x = 5;
+x++  // returns 5, x becomes 6
+++x  // returns 7, x becomes 7
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>6) Ternary Operator <span class="pill">cond ? A : B</span></h2>
+          <p class="note">One-line <code>if/else</code>.</p>
+          <table id="tbl-tern">
+            <thead><tr><th>Condition</th><th>If true</th><th>If false</th><th>Result</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>const age = 20;
+const type = age >= 18 ? "Adult" : "Minor";</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>7) Bitwise Operators <span class="pill">&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;</span></h2>
+          <p class="note">Operate on the binary form of integers.</p>
+          <table id="tbl-bit">
+            <thead><tr><th>Expression</th><th>Binary demo</th><th>Result</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>5 &amp; 3  // 0101 &amp; 0011 = 0001 => 1
+5 | 3  // 0111 => 7
+5 ^ 3  // 0110 => 6
+~5     // invert bits
+5 &lt;&lt; 1 // shift left (×2)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>8) Nullish &amp; Logical Assignment <span class="pill">??, ??=, ||=, &amp;&amp;=</span></h2>
+          <p class="note">
+            <code>??</code> picks the right side only when left is <code>null</code> or <code>undefined</code> (not 0/""), and the assignment versions update in-place.
+          </p>
+          <table id="tbl-nullish">
+            <thead><tr><th>Expression</th><th>Why</th><th>Result</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>let n = null;
+n ?? "default"   // "default"
+let a = 0;
+a ??= 5;         // stays 0 (because 0 is not null/undefined)
+let b = "";
+b ||= "fallback" // becomes "fallback" ("" is falsy)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div>
+          <h2>9) Optional Chaining <span class="pill">?.</span></h2>
+          <p class="note">Safely access nested properties without throwing errors.</p>
+          <table id="tbl-opt">
+            <thead><tr><th>Access</th><th>Why</th><th>Result</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div>
+          <pre><code>const user = { profile: { name: "Ava" } };
+user.profile?.name     // "Ava"
+user.contact?.email    // undefined (no crash)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>Made for learners. Edit the script or reload to re-run calculations.</footer>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id).querySelector("tbody");
+    const row = (...cells) => "<tr>" + cells.map(td => `<td>${td}</td>`).join("") + "</tr>";
+
+    // 1) Arithmetic
+    (() => {
+      const a = 10, b = 3;
+      const items = [
+        ["a + b", "Addition", a + b],
+        ["a - b", "Subtraction", a - b],
+        ["a * b", "Multiplication", a * b],
+        ["a / b", "Division", (a / b).toFixed(3)],
+        ["a % b", "Remainder", a % b],
+        ["a ** b", "Exponent (power)", a ** b],
+      ];
+      $.call(null, "tbl-arith");
+    })();
+    // fix: the helper above was wrong usage; define a proper helper returning tbody
+  </script>
+
+  <script>
+    // Small DOM helper again (correct one)
+    function tbody(id){ return document.querySelector(`#${id} tbody`); }
+    function addRows(id, rows){ tbody(id).innerHTML = rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join(""); }
+
+    // 1) Arithmetic
+    {
+      const a = 10, b = 3;
+      addRows("tbl-arith", [
+        ["a + b (10 + 3)", "Addition",  a + b],
+        ["a - b (10 - 3)", "Subtraction", a - b],
+        ["a * b (10 * 3)", "Multiplication", a * b],
+        ["a / b (10 / 3)", "Division", (a/b).toFixed(3)],
+        ["a % b (10 % 3)", "Remainder", a % b],
+        ["a ** b (10 ** 3)", "Exponent (power)", a ** b],
+      ]);
+    }
+
+    // 2) Assignment
+    {
+      let x = 10;
+      const rows = [];
+      rows.push([`x = 10`, "start", x]);
+      x += 5; rows.push([`x += 5`, "add & assign", x]);
+      x -= 3; rows.push([`x -= 3`, "subtract & assign", x]);
+      x *= 2; rows.push([`x *= 2`, "multiply & assign", x]);
+      x /= 4; rows.push([`x /= 4`, "divide & assign", x]);
+      x %= 3; rows.push([`x %= 3`, "remainder & assign", x]);
+      x **= 4; rows.push([`x **= 4`, "power & assign", x]);
+      addRows("tbl-assign", rows);
+    }
+
+    // 3) Comparison
+    {
+      addRows("tbl-comp", [
+        [`5 == "5"`, "loose equality (coerces types) — not recommended", String(5 == "5")],
+        [`5 === "5"`, "strict equality (no coercion) — preferred", String(5 === "5")],
+        [`7 != 8`, "values differ", String(7 != 8)],
+        [`7 !== "7"`, "type also differs", String(7 !== "7")],
+        [`10 > 6`, "greater than", String(10 > 6)],
+        [`3 < 6`, "less than", String(3 < 6)],
+        [`10 >= 10`, "greater or equal", String(10 >= 10)],
+        [`4 <= 2`, "less or equal", String(4 <= 2)]
+      ]);
+    }
+
+    // 4) Logical
+    {
+      addRows("tbl-logic", [
+        [`true && true`, "AND — both must be true", String(true && true)],
+        [`true && false`, "AND — one is false", String(true && false)],
+        [`false || true`, "OR — at least one true", String(false || true)],
+        [`false || 0 || "hi"`, "OR returns first truthy value", String(false || 0 || "hi")],
+        [`!"text"`, "NOT — flips truthiness", String(!"text")]
+      ]);
+    }
+
+    // 5) Increment / Decrement
+    {
+      let x = 5;
+      const post = x++;  // shows old value
+      const afterPost = x;
+      const pre = ++x;   // increments then shows new
+      const afterPre = x;
+      addRows("tbl-inc", [
+        ["x++ (post-increment)", post, afterPost],
+        ["++x (pre-increment)", pre, afterPre]
+      ]);
+    }
+
+    // 6) Ternary
+    {
+      const age = 20;
+      const label = age >= 18 ? "Adult" : "Minor";
+      addRows("tbl-tern", [
+        ["age >= 18", "Adult", "Minor", label]
+      ]);
+    }
+
+    // 7) Bitwise
+    {
+      function bin(n){ return (n >>> 0).toString(2).padStart(4, "0"); }
+      const a = 5, b = 3; // 0101 and 0011
+      addRows("tbl-bit", [
+        [`${a} & ${b}`, `${bin(a)} & ${bin(b)} = ${bin(a & b)}`, a & b],
+        [`${a} | ${b}`, `${bin(a)} | ${bin(b)} = ${bin(a | b)}`, a | b],
+        [`${a} ^ ${b}`, `${bin(a)} ^ ${bin(b)} = ${bin(a ^ b)}`, a ^ b],
+        [`~${a}`, `~${bin(a)} = ${bin(~a)}`, ~a],
+        [`${a} << 1`, `${bin(a)} << 1 = ${bin(a << 1)}`, a << 1],
+        [`${a} >> 1`, `${bin(a)} >> 1 = ${bin(a >> 1)}`, a >> 1],
+      ]);
+    }
+
+    // 8) Nullish & Logical assignment
+    {
+      let n = null, a = 0, b = "";
+      const rows = [];
+      rows.push([`n ?? "default"`, "left is null → take right", String(n ?? "default")]);
+      n = null; n ??= 42; rows.push([`n ??= 42`, "assign only if null/undefined", String(n)]);
+      a ??= 5; rows.push([`a ??= 5 (a=0)`, "0 is NOT null/undefined → keep 0", String(a)]);
+      b ||= "fallback"; rows.push([`b ||= "fallback" (b="")`, "'' is falsy → assign right", String(b)]);
+      let t = "text"; t &&= "only-if-truthy"; rows.push([`t &&= "only-if-truthy" (t="text")`, "left is truthy → assign", String(t)]);
+      addRows("tbl-nullish", rows);
+    }
+
+    // 9) Optional chaining
+    {
+      const user = { profile: { name: "Ava" } };
+      const rows = [];
+      rows.push([`user.profile?.name`, "profile exists", String(user.profile?.name)]);
+      rows.push([`user.contact?.email`, "contact missing → returns undefined (no crash)", String(user.contact?.email)]);
+      addRows("tbl-opt", rows);
+    }
+  </script>
+</body>
+</html>
+"""
+with open('/mnt/data/js_operators_explained.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+'/mnt/data/js_operators_explained.html'

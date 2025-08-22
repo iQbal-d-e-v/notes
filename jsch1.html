@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Datatypes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      color: #c7254e;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Datatypes with Examples</h1>
+
+  <h2>1. String</h2>
+  <p>A sequence of characters used to represent text. Strings are immutable and written in quotes.</p>
+  <pre><code>let name = "Sajid";
+console.log("Hello, " + name); // Hello, Sajid
+console.log(name.length);      // 5</code></pre>
+
+  <h2>2. Number</h2>
+  <p>Represents integers and floating-point values. Includes special values like <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code>.</p>
+  <pre><code>let a = 10;
+let b = 3.5;
+console.log(a + b); // 13.5
+console.log(a / b); // 2.857142857...</code></pre>
+
+  <h2>3. Boolean</h2>
+  <p>Represents logical values <code>true</code> or <code>false</code>, used in conditions and logic.</p>
+  <pre><code>let isLoggedIn = true;
+let age = 18;
+console.log(age >= 18); // true
+console.log(isLoggedIn); // true</code></pre>
+
+  <h2>4. Null</h2>
+  <p>A special value representing intentional emptiness or no value.</p>
+  <pre><code>let car = null;
+console.log(car);        // null
+console.log(typeof car); // "object"</code></pre>
+
+  <h2>5. Undefined</h2>
+  <p>Indicates a variable has been declared but not assigned a value.</p>
+  <pre><code>let x;
+console.log(x); // undefined
+
+function greet() {}
+console.log(greet()); // undefined</code></pre>
+
+  <h2>6. Symbol</h2>
+  <p>A unique and immutable primitive value often used as object keys.</p>
+  <pre><code>let id = Symbol("id");
+let user = { name: "Sajid", [id]: 123 };
+console.log(user.name); // Sajid
+console.log(user[id]);  // 123</code></pre>
+
+  <h2>7. BigInt</h2>
+  <p>Used to represent very large integers beyond the safe limit of <code>Number</code>.</p>
+  <pre><code>let big = 123456789012345678901234567890n;
+console.log(big);       // 123456789012345678901234567890n
+console.log(big + 10n); // 123456789012345678901234567900n</code></pre>
+
+  <h2>8. Object</h2>
+  <p>A collection of key-value pairs where values can be any datatype.</p>
+  <pre><code>let user = {
+  name: "Sajid",
+  age: 20,
+  isAdmin: true
+};
+
+console.log(user.name);    // Sajid
+console.log(user["age"]);  // 20</code></pre>
+
+  <h2>9. Array</h2>
+  <p>A special type of object used to store ordered collections of values.</p>
+  <pre><code>let fruits = ["apple", "banana", "mango"];
+console.log(fruits[0]);      // apple
+fruits.push("orange");
+console.log(fruits.length);  // 4</code></pre>
+
+  <h2>10. Function</h2>
+  <p>A block of reusable code that can take inputs (parameters) and return an output.</p>
+  <pre><code>function add(a, b) {
+  return a + b;
+}
+
+console.log(add(5, 3)); // 8</code></pre>
+
+</body>
+</html>

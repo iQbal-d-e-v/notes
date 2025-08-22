@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Notes Home</title>
+  <style>
+    :root {
+      --bg1: #cfe9ff;
+      --bg2: #e9f4ff;
+      --glass: rgba(255, 255, 255, 0.3);
+      --border: rgba(255, 255, 255, 0.5);
+      --radius: 20px;
+      --blur: 12px;
+      --text: #0f2743;
+      --accent: #2f80ed;
+      --shadow: 0 10px 25px rgba(15, 39, 67, 0.2);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    /* Nav bar with search only */
+    nav {
+      position: sticky;
+      top: 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    nav input {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: var(--radius);
+      backdrop-filter: blur(var(--blur));
+      background: var(--glass);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    main {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(15, 39, 67, 0.3);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .card p {
+      color: #123;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar with search -->
+  <nav>
+    <input type="search" placeholder="Search (not functional, just UI)">
+  </nav>
+
+  <!-- Cards linking to other pages -->
+  <main>
+    <a href="javascript-notes.html" class="card">
+      <h2>JavaScript Notes</h2>
+      <p>All basics and advanced concepts of JavaScript with examples.</p>
+    </a>
+
+    <a href="react-notes.html" class="card">
+      <h2>React Notes</h2>
+      <p>Understanding components, props, state, and rendering in React.</p>
+    </a>
+
+    <a href="html-css-notes.html" class="card">
+      <h2>HTML & CSS Notes</h2>
+      <p>Complete notes on building and styling modern webpages.</p>
+    </a>
+
+    <a href="projects.html" class="card">
+      <h2>Projects</h2>
+      <p>Small projects and practice exercises with code.</p>
+    </a>
+  </main>
+</body>
+</html>
