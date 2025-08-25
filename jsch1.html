@@ -2,60 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JavaScript Datatypes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Datatypes Explained</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.6;
-    }
-    h2 {
+      background: #ffffff;
       color: #2c3e50;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.7;
     }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 25px;
+      color: #222;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
     pre {
-      background: #f4f4f4;
-      padding: 10px;
-      border-radius: 5px;
+      background: rgba(200, 200, 200, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 0.95rem;
       overflow-x: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
+
     code {
-      color: #c7254e;
+      font-family: Consolas, monospace;
+      color: #d6336c;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>JavaScript Datatypes with Examples</h1>
+
+  <h1>JavaScript Datatypes</h1>
+  <p class="description">
+    In this page, we will learn about all the fundamental datatypes in JavaScript with detailed explanations 
+    and examples. Each section explains the concept clearly and provides sample code for better understanding.
+  </p>
 
   <h2>1. String</h2>
-  <p>A sequence of characters used to represent text. Strings are immutable and written in quotes.</p>
+  <p>A <b>String</b> is a sequence of characters used to represent text. Strings can be written using single quotes, double quotes, or backticks. They are immutable, meaning once created, they cannot be changed directly. JavaScript provides many methods for working with strings, such as <code>toUpperCase()</code>, <code>slice()</code>, and <code>includes()</code>.</p>
   <pre><code>let name = "Sajid";
 console.log("Hello, " + name); // Hello, Sajid
 console.log(name.length);      // 5</code></pre>
 
   <h2>2. Number</h2>
-  <p>Represents integers and floating-point values. Includes special values like <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code>.</p>
+  <p>The <b>Number</b> type represents both integers and floating-point numbers. JavaScript does not have separate types for integers and decimals. It also supports special values like <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code> (Not-a-Number).</p>
   <pre><code>let a = 10;
 let b = 3.5;
 console.log(a + b); // 13.5
 console.log(a / b); // 2.857142857...</code></pre>
 
   <h2>3. Boolean</h2>
-  <p>Represents logical values <code>true</code> or <code>false</code>, used in conditions and logic.</p>
+  <p>A <b>Boolean</b> has only two values: <code>true</code> or <code>false</code>. It is commonly used for decision making in conditions and logical operations. Expressions like comparisons return boolean values.</p>
   <pre><code>let isLoggedIn = true;
 let age = 18;
 console.log(age >= 18); // true
 console.log(isLoggedIn); // true</code></pre>
 
   <h2>4. Null</h2>
-  <p>A special value representing intentional emptiness or no value.</p>
+  <p><b>Null</b> represents intentional emptiness. It is a special value used to indicate "no value". Unlike <code>undefined</code>, which happens by default, <code>null</code> is usually assigned explicitly.</p>
   <pre><code>let car = null;
 console.log(car);        // null
-console.log(typeof car); // "object"</code></pre>
+console.log(typeof car); // "object" (quirk in JS)</code></pre>
 
   <h2>5. Undefined</h2>
-  <p>Indicates a variable has been declared but not assigned a value.</p>
+  <p><b>Undefined</b> means a variable has been declared but no value has been assigned yet. Functions also return <code>undefined</code> if they do not explicitly return a value.</p>
   <pre><code>let x;
 console.log(x); // undefined
 
@@ -63,20 +111,20 @@ function greet() {}
 console.log(greet()); // undefined</code></pre>
 
   <h2>6. Symbol</h2>
-  <p>A unique and immutable primitive value often used as object keys.</p>
+  <p>A <b>Symbol</b> is a unique and immutable primitive value introduced in ES6. Even if two symbols have the same description, they are always different. Symbols are often used as object keys to avoid property name conflicts.</p>
   <pre><code>let id = Symbol("id");
 let user = { name: "Sajid", [id]: 123 };
 console.log(user.name); // Sajid
 console.log(user[id]);  // 123</code></pre>
 
   <h2>7. BigInt</h2>
-  <p>Used to represent very large integers beyond the safe limit of <code>Number</code>.</p>
+  <p><b>BigInt</b> is a special numeric type used to handle very large integers beyond the safe limit of <code>Number</code>. It is created by appending <code>n</code> to the end of an integer.</p>
   <pre><code>let big = 123456789012345678901234567890n;
 console.log(big);       // 123456789012345678901234567890n
 console.log(big + 10n); // 123456789012345678901234567900n</code></pre>
 
   <h2>8. Object</h2>
-  <p>A collection of key-value pairs where values can be any datatype.</p>
+  <p>An <b>Object</b> is a collection of key-value pairs. Keys are usually strings (or symbols) and values can be any datatype, including functions or other objects. Objects are the building blocks of JavaScript.</p>
   <pre><code>let user = {
   name: "Sajid",
   age: 20,
@@ -87,14 +135,14 @@ console.log(user.name);    // Sajid
 console.log(user["age"]);  // 20</code></pre>
 
   <h2>9. Array</h2>
-  <p>A special type of object used to store ordered collections of values.</p>
+  <p>An <b>Array</b> is a special type of object used to store ordered collections of values. Arrays are zero-indexed, meaning the first element is at index 0. They come with many useful methods like <code>push()</code>, <code>pop()</code>, <code>map()</code>, and <code>filter()</code>.</p>
   <pre><code>let fruits = ["apple", "banana", "mango"];
 console.log(fruits[0]);      // apple
 fruits.push("orange");
 console.log(fruits.length);  // 4</code></pre>
 
   <h2>10. Function</h2>
-  <p>A block of reusable code that can take inputs (parameters) and return an output.</p>
+  <p>A <b>Function</b> is a reusable block of code designed to perform a task. It can accept parameters, process them, and return a result. Functions improve modularity and reduce repetition in code.</p>
   <pre><code>function add(a, b) {
   return a + b;
 }

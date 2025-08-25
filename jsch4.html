@@ -1,287 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Conditional statements in JavaScript — Deep Guide</title>
-   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#7c3aed;--mono:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Segoe UI Mono', monospace}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,#071126 0%, #061022 100%);color:#e6eef8}
-    .wrap{max-width:1000px;margin:32px auto;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.7)}
-    h1{font-size:28px;margin:0 0 10px}
-    h2{color:var(--accent);margin-top:22px}
-    p{line-height:1.6;color:#d8e6f7}
-    code, pre{font-family:var(--mono);font-size:20px;background:#021428;padding:0px;border-radius:6px;color:#d9f3ff}
-    pre{overflow:auto}
-    .kbd{background:#071a2a;padding:4px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.03)}
-    ul{color:var(--muted)}
-    .cheat{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .note{color:#a7c5ff;background:linear-gradient(90deg, rgba(124,58,237,0.06), rgba(3,105,161,0.02));padding:10px;border-radius:8px;margin:12px 0}
-    .actions{margin-top:18px}
-    a.button{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:white;text-decoration:none}
-    footer{margin-top:26px;color:#98a8bf;font-size:13px}
-    @media(max-width:720px){.cheat{grid-template-columns:1fr}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Conditional Statements - Complete Tutorial</title>
+  <meta name="description" content="A complete tutorial on JavaScript conditional statements including if, else, else if, switch, ternary operator, and best practices with deep explanations and examples.">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 30px;
+      color: #222;
+    }
+
+    h3 {
+      margin-top: 20px;
+      color: #444;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin: 10px 20px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    pre, code {
+      font-family: Consolas, monospace;
+      background: rgba(200, 200, 200, 0.25);
+      color: #000;
+      padding: 12px;
+      border-radius: 12px;
+      display: block;
+      overflow-x: auto;
+      backdrop-filter: blur(10px);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Conditional statements in JavaScript — Deep, step-by-step guide</h1>
-
-    <p>Nice — here’s a deep, step-by-step guide to <strong>conditional statements in JavaScript</strong>, with clear examples, common pitfalls, and best practices. I’ll explain <em>how</em> conditions are evaluated and then walk through every conditional feature you’ll use day-to-day.</p>
-
-    <h2>TL;DR (fast summary)</h2>
-    <ul>
-      <li>A condition expression is evaluated and coerced to a boolean (truthy/falsy).</li>
-      <li>Use <code>if / else if / else</code> for branching, <code>?:</code> (ternary) for simple expressions, and <code>switch</code> for discrete value matching.</li>
-      <li>Prefer <code>===</code> over <code>==</code>. Watch out for <code>null</code>, <code>undefined</code>, <code>NaN</code>, and reference equality for objects.</li>
-      <li>Logical operators (<code>&&</code>, <code>||</code>) <em>short-circuit</em> and return operand values (not just booleans) — useful for guards and defaults. Use <code>??</code> (nullish coalescing) when you want to treat <code>0</code>/<code>""</code> as valid values.</li>
-    </ul>
-
-    <h2>1) How a condition is evaluated — step by step</h2>
-    <p>1. <strong>Evaluate the expression</strong> inside the parentheses (e.g. <code>if (expr) { ... }</code>).</p>
-    <p>2. <strong>Coerce the result to a Boolean</strong> using JavaScript’s ToBoolean rules (truthy/falsy).</p>
-    <p>3. <strong>Choose the branch</strong>: if true → run the <code>if</code> block; else check <code>else if</code> in order; else run <code>else</code> if present.</p>
-    <p>4. <strong>Execute block code</strong>. After block finishes, execution continues after the whole <code>if/else</code> structure.</p>
-
-    <p>So the <em>key</em> is: <em>what value the expression yields and whether that value is considered truthy or falsy</em>.</p>
-
-    <h2>2) Truthy and falsy values (landmark list)</h2>
-    <p><strong>Falsy values</strong> (these become <code>false</code> in a condition):</p>
-    <ul>
-      <li><code>false</code></li>
-      <li><code>0</code> and <code>-0</code></li>
-      <li><code>0n</code> (BigInt zero)</li>
-      <li><code>""</code> (empty string)</li>
-      <li><code>null</code></li>
-      <li><code>undefined</code></li>
-      <li><code>NaN</code></li>
-    </ul>
-    <p>Everything else is <strong>truthy</strong> — including <code>{}</code>, <code>[]</code>, <code>function(){}</code>, non-empty strings, nonzero numbers, etc. <br>Example: <code>if ([]) { console.log("truthy"); }</code> → logs <code>"truthy"</code>.</p>
-
-    <h2>3) <code>if / else if / else</code> — syntax + example + step-by-step</h2>
-    <pre><code>const age = 20;
-
-if (age >= 18) {
-  console.log("Adult");
-} else if (age >= 13) {
-  console.log("Teen");
-} else {
-  console.log("Child");
-}
-</code></pre>
-    <p>Step-by-step for <code>age = 20</code>:</p>
-    <ol>
-      <li>Evaluate <code>age >= 18</code> → <code>true</code>.</li>
-      <li>Because <code>true</code>, run first block and skip all other <code>else if</code> / <code>else</code> blocks.</li>
-      <li>Continue after the whole <code>if/else</code> statement.</li>
-    </ol>
-
-    <p><strong>Notes</strong>
-    <ul>
-      <li><code>else if</code> is checked only if previous <code>if</code> or <code>else if</code> was false.</li>
-      <li>Separate <code>if</code> statements (not <code>else if</code>) all run independently if their conditions are true.</li>
-    </ul>
+  <div class="container">
+    <h1>JavaScript Conditional Statements</h1>
+    <p>
+      Conditional statements in JavaScript are the foundation of decision-making in programming. 
+      They allow your code to perform different actions depending on whether a condition is <strong>true</strong> or <strong>false</strong>. 
+      In this tutorial, we will cover all types of conditional statements in detail with examples and best practices.
     </p>
 
-    <h2>4) Nested conditionals and scope gotchas</h2>
-    <pre><code>if (user) {
-  if (user.isActive) {
-    // do something
-  }
-}
-</code></pre>
-    <p><strong>Scope</strong>: <code>let</code>/<code>const</code> are block-scoped — a <code>let x</code> inside <code>if {}</code> is not visible outside that <code>if</code>. <code>var</code> is function-scoped (hoisted), so <code>var</code> variables inside <code>if</code> will be visible outside — be careful.</p>
+    <!-- What are conditional statements -->
+    <div class="section">
+      <h2>1. What are Conditional Statements?</h2>
+      <p>
+        Conditional statements help us control the flow of a program. 
+        They are used when we want to execute certain parts of code only if a particular condition is satisfied.
+      </p>
+      <pre><code>// Example
+let age = 18;
 
-    <p><strong>Style tip</strong>: prefer <em>guard clauses</em> (early returns) to reduce nesting:</p>
-    <pre><code>if (!user) return;
-if (!user.isActive) return;
-// do main work
-</code></pre>
-
-    <h2>5) The ternary operator <code>? :</code> (conditional expression)</h2>
-    <p>- Syntax: <code>condition ? exprIfTrue : exprIfFalse</code>
-    <br>- It returns a value, so useful in expressions.</p>
-
-    <pre><code>const status = score >= 60 ? "pass" : "fail";
-</code></pre>
-
-    <p><strong>Chaining (right-associative)</strong>:</p>
-    <pre><code>const grade = score >= 90 ? "A" : score >= 75 ? "B" : "C";
-// this is parsed as: score >= 90 ? "A" : (score >= 75 ? "B" : "C")
-</code></pre>
-    <p><strong>Warning</strong>: nested ternaries can be hard to read — prefer <code>if</code> or helper functions for more complex logic.</p>
-
-    <h2>6) <code>switch</code> statement (when to use and pitfalls)</h2>
-    <pre><code>switch (command) {
-  case "start":
-  case "resume":
-    start();
-    break;
-  case "stop":
-    stop();
-    break;
-  default:
-    unknown();
-}
-</code></pre>
-
-    <ul>
-      <li><code>switch</code> compares the <code>switch</code> expression with <code>case</code> values using <strong>strict</strong> comparison (like <code>===</code>), so types must match.</li>
-      <li><strong>Fall-through</strong>: if you omit <code>break</code>, execution continues into the next case. Use fall-through intentionally to group cases (see example).</li>
-      <li><code>default</code> runs if no case matches.</li>
-    </ul>
-
-    <h2>7) Equality and comparison pitfalls</h2>
-    <p><strong><code>==</code> vs <code>===</code></strong></p>
-    <ul>
-      <li><code>==</code> does type coercion before comparing (can lead to surprising results).</li>
-      <li><code>===</code> is strict equality — no coerced conversions. <strong>Use <code>===</code></strong> almost always.</li>
-    </ul>
-
-    <pre><code>0 == "0";     // true
-0 === "0";    // false
-null == undefined;  // true (special rule)
-null === undefined; // false
-</code></pre>
-
-    <p><strong>NaN</strong>
-    <br>- <code>NaN === NaN</code> is <code>false</code>. Use <code>Number.isNaN(value)</code> to check for NaN.</p>
-
-    <p><strong>Objects / arrays</strong>
-    <br>- Objects are compared by reference:</p>
-    <pre><code>{} === {}        // false
-const a = []; const b = a; a === b // true
-</code></pre>
-
-    <p><strong>Strings and numbers</strong>
-    <br>- When both operands are strings, relational operators compare lexicographically (<code>'2' < '10'</code> is <code>false</code> because <code>'2' &gt; '1'</code> lexicographically). If mixing types, JS may coerce to numbers — to be safe, convert explicitly with <code>Number()</code> when you mean numeric comparison.</p>
-
-    <p><strong><code>typeof null</code> quirk</strong>
-    <br>- <code>typeof null === "object"</code> (historical JavaScript quirk). To detect <code>null</code>, check <code>x === null</code>.</p>
-
-    <h2>8) Logical operators used as conditionals (short-circuit behavior)</h2>
-    <ul>
-      <li><code>a && b</code>:
-        <br>- Evaluates <code>a</code>. If <code>a</code> is falsy, returns <code>a</code> (stops). Otherwise evaluates <code>b</code> and returns <code>b</code>.
-        <br>- Useful as a guard: <code>user && user.init()</code> — <code>user.init()</code> runs only if <code>user</code> is truthy.
-      </li>
-      <li><code>a || b</code>:
-        <br>- Evaluates <code>a</code>. If <code>a</code> is truthy, returns <code>a</code>. Otherwise returns <code>b</code>.
-        <br>- Useful for defaults: <code>const name = providedName || "Guest";</code> BUT: this treats <code>0</code>, <code>""</code>, <code>false</code> as absence (because they’re falsy).
-      </li>
-      <li><code>!a</code>:
-        <br>- Logical NOT — coerces to boolean and flips it.
-      </li>
-    </ul>
-
-    <pre><code>console.log(0 || "fallback"); // "fallback"
-console.log("hi" && 0);       // 0
-</code></pre>
-
-    <p><strong>Important</strong>: these operators return <em>the actual operand</em>, not just <code>true</code>/<code>false</code>.</p>
-
-    <h2>9) Nullish coalescing <code>??</code> and optional chaining <code>?.</code></h2>
-    <p>- <code>??</code> returns the right operand only if left is <code>null</code> or <code>undefined</code> (not for <code>0</code> or <code>""</code>):</p>
-    <pre><code>0 || 5   // 5
-0 ?? 5  // 0
-</code></pre>
-
-    <p>- <code>?.</code> optional chaining: safely access nested properties without throwing when something is <code>null</code>/<code>undefined</code>:</p>
-    <pre><code>const city = user?.address?.city;
-</code></pre>
-
-    <p><strong>Note</strong>: Do not mix <code>||</code> and <code>??</code> without parentheses — operator precedence rules can make behavior confusing.</p>
-
-    <h2>10) Using logical operators instead of <code>if</code> — idioms and cautions</h2>
-    <pre><code>user && user.initialize();
-</code></pre>
-    <p><strong>Default value</strong>:</p>
-    <pre><code>const limit = options.limit ?? 10; // prefer ?? if 0 is a valid value
-</code></pre>
-
-    <p><strong>Switch replacement (object map)</strong>:</p>
-    <pre><code>const handlers = {
-  start: () =&gt; start(),
-  stop: () =&gt; stop()
-};
-(handlers[action] || (() =&gt; defaultAction()))();
-</code></pre>
-
-    <p>This avoids long <code>switch</code>es in many cases.</p>
-
-    <h2>11) Operator precedence &amp; evaluation order (practical bits)</h2>
-    <ul>
-      <li><code>!</code> evaluated before <code>&&</code>, which is evaluated before <code>||</code>.</li>
-      <li><code>&&</code> has higher precedence than <code>||</code> — so <code>a || b && c</code> behaves like <code>a || (b && c)</code>. Use parentheses to make intention explicit.</li>
-      <li>The ternary <code>?:</code> is right-associative: <code>a ? b : c ? d : e</code> → parsed as <code>a ? b : (c ? d : e)</code>.</li>
-    </ul>
-
-    <h2>12) Common gotchas &amp; best practices (quick list)</h2>
-    <ul>
-      <li><strong>Prefer <code>===</code></strong> to avoid coercion surprises.</li>
-      <li><strong>Avoid assignments in conditions</strong> (<code>if (x = 5)</code>) — lint rule <code>no-cond-assign</code> helps.</li>
-      <li><strong>Be explicit about numeric strings</strong>: convert (<code>Number()</code>, <code>parseInt</code>) before numeric comparisons.</li>
-      <li><strong>Use <code>Number.isNaN()</code></strong> to check <code>NaN</code>.</li>
-      <li><strong>Be careful with <code>||</code> for defaults</strong> when <code>0</code>/<code>""</code>/<code>false</code> are valid values — use <code>??</code> instead.</li>
-      <li><strong>Use early returns (guard clauses)</strong> to reduce nested <code>if</code>s and improve readability.</li>
-      <li><strong>Use <code>switch</code></strong> for many discrete cases but prefer object maps for behavior dispatch in many situations.</li>
-      <li><strong>Avoid complex conditions in a single line</strong> — break into named boolean variables for clarity:</li>
-    </ul>
-
-    <pre><code>const isAdult = age >= 18;
-const isVerified = user.verified;
-if (isAdult && isVerified) { ... }
-</code></pre>
-
-    <h2>13) Practical examples (small cookbook)</h2>
-    <p><strong>Guard clause</strong></p>
-    <pre><code>function process(order) {
-  if (!order) return;
-  if (!order.items || order.items.length === 0) return;
-  // Process order
-}
-</code></pre>
-
-    <p><strong>Ternary for inline rendering</strong></p>
-    <pre><code>const label = count === 1 ? "item" : "items";
-</code></pre>
-
-    <p><strong>Switch grouping</strong></p>
-    <pre><code>switch (role) {
-  case "admin":
-  case "superuser":
-    grantAll();
-    break;
-  default:
-    limitedPermissions();
-}
-</code></pre>
-
-    <p><strong>Default value with nullish coalescing</strong></p>
-    <pre><code>const retries = config.retries ?? 3; // keeps 0 if explicitly set
-</code></pre>
-
-    <h2>14) Cheat-sheet (quick reference)</h2>
-    <ul class="cheat">
-      <li><code>if (cond) {}</code> — run when <code>cond</code> coerces to true</li>
-      <li><code>cond ? a : b</code> — expression, returns <code>a</code> or <code>b</code></li>
-      <li><code>switch (x) { case v: ... }</code> — <code>===</code> comparison, remember <code>break</code></li>
-      <li><code>a && b</code> — returns first falsy *or* last operand</li>
-      <li><code>a || b</code> — returns first truthy *or* last operand</li>
-      <li><code>??</code> — return right side only if left is <code>null</code>/<code>undefined</code></li>
-      <li>Truthy/falsy list — see above</li>
-    </ul>
-
-    <div class="note">
-      If you want, I can:
-      <ul>
-        <li>Turn this into a <strong>clean HTML page</strong> or a printable cheat-sheet; or</li>
-        <li>Give <strong>10 practice exercises</strong> (with answers) to test mastery; or</li>
-        <li>Walk through a <strong>real bug</strong> in your code (paste it here) and explain why the conditional behaves unexpectedly.</li>
-      </ul>
+if (age >= 18) {
+  console.log("You are an adult.");
+}</code></pre>
+      <p>Here, the message will only be displayed if the condition <em>age >= 18</em> is true.</p>
     </div>
 
-    <footer>— End of guide</footer>
+    <!-- if statement -->
+    <div class="section">
+      <h2>2. The if Statement</h2>
+      <p>
+        The if statement checks whether a condition is true. 
+        If the condition evaluates to true, the block of code inside it executes.
+      </p>
+      <pre><code>let number = 10;
+
+if (number > 0) {
+  console.log("The number is positive.");
+}</code></pre>
+      <p>
+        Explanation: Since 10 > 0 is true, the program outputs <em>The number is positive.</em>
+      </p>
+    </div>
+
+    <!-- else statement -->
+    <div class="section">
+      <h2>3. The else Statement</h2>
+      <p>
+        The else statement provides an alternative path. 
+        If the if condition is false, the else block executes.
+      </p>
+      <pre><code>let number = -5;
+
+if (number > 0) {
+  console.log("Positive number");
+} else {
+  console.log("Not a positive number");
+}</code></pre>
+      <p>
+        Here, since -5 > 0 is false, the program executes the else block and prints <em>Not a positive number</em>.
+      </p>
+    </div>
+
+    <!-- else if statement -->
+    <div class="section">
+      <h2>4. The else if Statement</h2>
+      <p>
+        The else if statement is used to check multiple conditions. 
+        It prevents the need for writing multiple separate if blocks.
+      </p>
+      <pre><code>let marks = 75;
+
+if (marks >= 90) {
+  console.log("Grade A");
+} else if (marks >= 75) {
+  console.log("Grade B");
+} else {
+  console.log("Grade C");
+}</code></pre>
+      <p>
+        Explanation: The code checks conditions in order. Since marks = 75 matches the else if condition, 
+        it prints <em>Grade B</em>.
+      </p>
+    </div>
+
+    <!-- switch statement -->
+    <div class="section">
+      <h2>5. The switch Statement</h2>
+      <p>
+        A switch statement is often more elegant than multiple else if conditions when comparing the same variable.
+      </p>
+      <pre><code>let fruit = "apple";
+
+switch(fruit) {
+  case "apple":
+    console.log("Apples are red or green.");
+    break;
+  case "banana":
+    console.log("Bananas are yellow.");
+    break;
+  default:
+    console.log("Unknown fruit.");
+}</code></pre>
+      <p>
+        The switch checks the value of fruit and executes the matching case. 
+        The break statement stops the switch from continuing further.
+      </p>
+    </div>
+
+    <!-- ternary operator -->
+    <div class="section">
+      <h2>6. Ternary Operator</h2>
+      <p>
+        The ternary operator is a shorthand for simple if-else conditions. 
+        It uses the syntax: <em>condition ? valueIfTrue : valueIfFalse</em>.
+      </p>
+      <pre><code>let age = 20;
+
+let message = (age >= 18) ? "Adult" : "Minor";
+console.log(message);</code></pre>
+      <p>
+        Since age = 20, the condition is true, and the output will be <em>Adult</em>.
+      </p>
+    </div>
+
+    <!-- nested conditionals -->
+    <div class="section">
+      <h2>7. Nested Conditionals</h2>
+      <p>
+        Conditionals can be nested inside each other, but readability should be considered carefully. 
+        Too much nesting can make code hard to understand.
+      </p>
+      <pre><code>let age = 25;
+
+if (age > 18) {
+  if (age > 21) {
+    console.log("You are above 21");
+  } else {
+    console.log("You are between 18 and 21");
+  }
+}</code></pre>
+      <p>
+        Here, the program first checks if age > 18. If true, it goes further to check if age > 21.
+      </p>
+    </div>
+
+    <!-- best practices -->
+    <div class="section">
+      <h2>8. Best Practices for Conditionals</h2>
+      <ul>
+        <li>Keep conditions simple and readable.</li>
+        <li>Avoid deeply nested if statements—use logical operators where possible.</li>
+        <li>Use switch or mapping objects instead of long else if chains.</li>
+        <li>Add comments to explain complex conditions for better readability.</li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>
