@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Before React - Complete Preparation Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #222;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #444;
+    }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    section {
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    section h2 {
+      margin-top: 0;
+      color: #111;
+    }
+    section h3 {
+      margin-top: 1.2rem;
+      color: #444;
+    }
+    p, ul, ol {
+      color: #333;
+    }
+    code {
+      background: rgba(128, 128, 128, 0.15);
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 0.95rem;
+    }
+    pre {
+      background: rgba(200, 200, 200, 0.3);
+      backdrop-filter: blur(6px);
+      padding: 1rem;
+      border-radius: 14px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JavaScript Before React - Complete Preparation Guide</h1>
+    <p>This page will teach you everything you must know in JavaScript (ES6+) before you start learning React. Each topic is explained in depth with examples.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>🔑 JavaScript Basics (Absolute Must)</h2>
+      <p>Before diving into React, you must be confident with these fundamentals. They form the building blocks of any JavaScript program.</p>
+
+      <h3>1. Variables & Scope</h3>
+      <p>Variables store data. JavaScript provides <code>var</code>, <code>let</code>, and <code>const</code>. The major difference is in their <strong>scope</strong> and mutability.</p>
+      <pre><code>let count = 0;       // can be updated, block scoped
+const PI = 3.14;     // cannot be reassigned
+var oldWay = 10;     // function scoped (avoid in modern JS)</code></pre>
+
+      <h3>2. Data Types</h3>
+      <p>JavaScript has <strong>primitive types</strong> such as string, number, boolean, null, undefined, symbol, bigint, and <strong>reference types</strong> such as objects, arrays, and functions.</p>
+
+      <h3>3. Operators</h3>
+      <p>Operators perform actions like math, comparisons, and logic.</p>
+      <ul>
+        <li>Arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></li>
+        <li>Comparison: <code>===</code> (strict equality), <code>!==</code></li>
+        <li>Logical: <code>&&</code>, <code>||</code>, <code>!</code></li>
+      </ul>
+
+      <h3>4. Strings</h3>
+      <p>Strings can be manipulated with methods and template literals.</p>
+      <pre><code>const name = "Sajid";
+console.log(`Hello ${name.toUpperCase()}!`);</code></pre>
+
+      <h3>5. Conditionals</h3>
+      <p>Use <code>if</code>, <code>else if</code>, and <code>else</code> to execute code conditionally.</p>
+      <pre><code>if (score &gt;= 90) grade = 'A';
+else if (score &gt;= 75) grade = 'B';
+else grade = 'C';</code></pre>
+
+      <h3>6. Loops</h3>
+      <p>Loops allow repeating code efficiently.</p>
+      <pre><code>for (let i = 0; i &lt; 3; i++) {
+  console.log(i);
+}</code></pre>
+
+      <h3>7. Functions</h3>
+      <p>Functions group logic into reusable blocks. Learn declaration, expression, and arrow functions.</p>
+      <pre><code>// Declaration
+function add(a, b){ return a + b; }
+// Expression
+const sub = function(a, b){ return a - b; }
+// Arrow function
+const mul = (a, b) =&gt; a * b;</code></pre>
+    </section>
+
+    <section>
+      <h2>🧰 Intermediate JavaScript</h2>
+      <p>Once you are comfortable with basics, you must know how to work with arrays, objects, and ES6+ features like destructuring.</p>
+
+      <h3>Arrays</h3>
+      <p>Arrays are ordered lists. Common methods include <code>map</code>, <code>filter</code>, and <code>reduce</code>.</p>
+      <pre><code>const nums = [1,2,3,4];
+nums.map(x =&gt; x * 2);        // [2,4,6,8]
+nums.filter(x =&gt; x % 2 === 0); // [2,4]</code></pre>
+
+      <h3>Objects</h3>
+      <p>Objects hold key-value pairs.</p>
+      <pre><code>const user = { id: 1, name: "Aisha" };
+console.log(user.name);      // dot notation
+console.log(user["id"]);     // bracket notation</code></pre>
+
+      <h3>Destructuring & Spread</h3>
+      <p>ES6 introduces concise syntax for extracting and combining data.</p>
+      <pre><code>const { name } = user;  // destructuring
+const copy = { ...user, role: "admin" }; // spread operator</code></pre>
+    </section>
+
+    <section>
+      <h2>⚡ ES6+ Advanced</h2>
+      <p>These modern features are heavily used in React.</p>
+
+      <h3>Modules</h3>
+      <pre><code>// math.js
+export const add = (a,b) =&gt; a+b;
+export default function mul(a,b){ return a*b }
+
+// app.js
+import mul, { add } from './math.js';</code></pre>
+
+      <h3>Classes & Inheritance</h3>
+      <pre><code>class Person{
+  constructor(name){ this.name = name }
+  hello(){ return `Hello ${this.name}` }
+}</code></pre>
+
+      <h3>Promises & Async/Await</h3>
+      <pre><code>async function loadData(){
+  const res = await fetch('/api');
+  const data = await res.json();
+  console.log(data);
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>🌐 Browser & APIs</h2>
+      <p>These are necessary to handle data in web applications.</p>
+
+      <h3>Fetch API</h3>
+      <pre><code>async function getUsers(){
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  return res.json();
+}</code></pre>
+
+      <h3>Storage</h3>
+      <pre><code>localStorage.setItem("token", "abc123");
+const token = localStorage.getItem("token");</code></pre>
+    </section>
+
+    <section>
+      <h2>✅ Summary Roadmap</h2>
+      <ol>
+        <li>Basics → variables, types, operators, functions</li>
+        <li>Arrays & Objects → CRUD, map, filter, reduce</li>
+        <li>ES6 Essentials → arrow functions, destructuring, spread/rest</li>
+        <li>Advanced → modules, classes, promises, async/await</li>
+        <li>Browser APIs → fetch, localStorage, JSON</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Prepared as a complete JavaScript foundation guide before learning React.</p>
+  </footer>
+</body>
+</html>
