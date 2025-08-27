@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loops in JavaScript - Complete Explanation</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.7;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    code, pre {
+      font-family: Consolas, monospace;
+      background: rgba(200, 200, 200, 0.2);
+      padding: 12px;
+      display: block;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Loops in JavaScript</h1>
+    <p>
+      On this page, we will explore <strong>loops in JavaScript</strong>. Loops are a way to 
+      repeatedly execute blocks of code, either a fixed number of times or until a condition is met. 
+      You’ll learn different types of loops, when to use each one, and practical examples with detailed explanations.
+    </p>
+  </header>
+
+  <main>
+    <!-- Classic for loop -->
+    <section>
+      <h2>1. The Classic <code>for</code> Loop</h2>
+      <p>
+        The <code>for</code> loop is one of the most commonly used loops. You use it when you know how many times 
+        you want to run your code, or when you need access to an index while iterating.
+      </p>
+      <p><strong>Structure:</strong> <code>for (initialization; condition; increment) { ... }</code></p>
+      <pre><code>// Example: Sum numbers from 1 to n
+function sumTo(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+}
+console.log(sumTo(5)); // 15</code></pre>
+      <p>
+        Here, <code>i</code> starts at 1, increases by 1 each time, and the loop continues until <code>i</code> is greater than <code>n</code>.
+      </p>
+    </section>
+
+    <!-- While loop -->
+    <section>
+      <h2>2. <code>while</code> and <code>do...while</code> Loops</h2>
+      <p>
+        These loops repeat code based on a condition. The <code>while</code> loop checks the condition first, 
+        while <code>do...while</code> runs the block at least once before checking.
+      </p>
+      <pre><code>// while example
+let countdown = 3;
+while (countdown > 0) {
+  console.log(countdown);
+  countdown--;
+}
+console.log("Go!");</code></pre>
+      <pre><code>// do...while example
+let input;
+do {
+  input = "Sample Input";
+  console.log("Processed:", input);
+} while (false);</code></pre>
+    </section>
+
+    <!-- for...of -->
+    <section>
+      <h2>3. The <code>for...of</code> Loop</h2>
+      <p>
+        <code>for...of</code> is used to iterate over <strong>values</strong> of iterable objects like arrays, strings, sets, or maps.
+      </p>
+      <pre><code>const colors = ["red", "green", "blue"];
+for (const color of colors) {
+  console.log(color);
+}</code></pre>
+      <p>This prints each element in the array without needing to deal with indexes.</p>
+    </section>
+
+    <!-- for...in -->
+    <section>
+      <h2>4. The <code>for...in</code> Loop</h2>
+      <p>
+        <code>for...in</code> is used to iterate over the <strong>keys (property names)</strong> of an object.
+      </p>
+      <pre><code>const person = { name: "Ava", role: "Developer" };
+for (const key in person) {
+  if (Object.hasOwn(person, key)) {
+    console.log(key, person[key]);
+  }
+}</code></pre>
+      <p>
+        This ensures we only get the object’s own keys, not those inherited from its prototype.
+      </p>
+    </section>
+
+    <!-- Array methods -->
+    <section>
+      <h2>5. Array Iteration Methods</h2>
+      <p>
+        Modern JavaScript arrays provide built-in methods to loop in a cleaner, more functional style.
+      </p>
+      <pre><code>const nums = [1, 2, 3, 4];
+
+// forEach: runs for each element
+nums.forEach((n) => console.log(n));
+
+// map: returns a new array
+const squares = nums.map(n => n * n);
+
+// filter: keeps only some values
+const evens = nums.filter(n => n % 2 === 0);
+
+// reduce: combines values into one
+const sum = nums.reduce((acc, n) => acc + n, 0);</code></pre>
+      <p>
+        Use these when you want to transform arrays or compute results without writing manual loops.
+      </p>
+    </section>
+
+    <!-- Break and continue -->
+    <section>
+      <h2>6. Break and Continue</h2>
+      <p>
+        Inside loops, you can use <code>break</code> to stop the loop entirely or <code>continue</code> 
+        to skip the current iteration.
+      </p>
+      <pre><code>for (let i = 0; i < 10; i++) {
+  if (i === 3) continue; // skip 3
+  if (i === 7) break;    // stop at 7
+  console.log(i);
+}</code></pre>
+    </section>
+
+    <!-- Async loops -->
+    <section>
+      <h2>7. Asynchronous Loops</h2>
+      <p>
+        When dealing with promises, you often need to use <code>for...of</code> with <code>await</code> 
+        for sequential async operations.
+      </p>
+      <pre><code>async function fetchInOrder(urls) {
+  const results = [];
+  for (const url of urls) {
+    const res = await fetch(url);
+    results.push(await res.text());
+  }
+  return results;
+}</code></pre>
+      <p>
+        This ensures each fetch finishes before the next one starts.
+      </p>
+    </section>
+
+    <!-- Cheat sheet -->
+    <section>
+      <h2>8. Quick Cheat Sheet</h2>
+      <ul>
+        <li>Need an index or <code>break/continue</code> → Use <strong>for</strong></li>
+        <li>Iterating over array values or strings → Use <strong>for...of</strong></li>
+        <li>Iterating over object keys → Use <strong>for...in</strong> (or <code>Object.keys/entries</code>)</li>
+        <li>Transforming/filtering arrays → Use <strong>map</strong>, <strong>filter</strong>, <strong>reduce</strong></li>
+        <li>Sequential async work → Use <strong>for...of</strong> with <code>await</code></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

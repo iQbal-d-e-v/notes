@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Functions - In Depth Explanation</title>
+  <meta name="description" content="A complete in-depth explanation of JavaScript functions with examples, covering syntax, types, parameters, return values, scope, recursion, and more.">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #ffffff;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #222;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .code-block {
+      background: rgba(200, 200, 200, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px 0;
+      font-family: monospace;
+      font-size: 15px;
+      overflow-x: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      color: #000;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Functions - Complete Explanation</h1>
+  <p>
+    In this tutorial page, we will learn everything about <strong>functions in JavaScript</strong>. 
+    Functions are one of the most important building blocks in programming. 
+    We’ll cover their definition, syntax, types, parameters, return values, scope, recursion, and more — all with detailed examples.
+  </p>
+
+  <div class="section">
+    <h2>🔹 What is a Function?</h2>
+    <p>
+      A function is a block of code designed to perform a particular task. Instead of repeating the same code, we can wrap it in a function and reuse it whenever needed. 
+      Functions improve <strong>reusability, readability, and organization</strong>.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Basic Syntax</h2>
+    <div class="code-block">
+      function functionName(parameters) {<br>
+      &nbsp;&nbsp;// code to be executed<br>
+      &nbsp;&nbsp;return value; // optional<br>
+      }
+    </div>
+    <p>
+      - <code>function</code> keyword declares the function.<br>
+      - <code>functionName</code> is the name you give.<br>
+      - <code>parameters</code> are placeholders for input values.<br>
+      - <code>return</code> sends back a result (optional).
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Example 1: Simple Function</h2>
+    <div class="code-block">
+      function greet() {<br>
+      &nbsp;&nbsp;console.log("Hello, Welcome to JavaScript!");<br>
+      }<br><br>
+      greet(); // calling the function
+    </div>
+    <p>
+      This function has no parameters and simply prints a welcome message. To execute it, we call it using <code>greet()</code>.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Example 2: Function with Parameters</h2>
+    <div class="code-block">
+      function greetUser(name) {<br>
+      &nbsp;&nbsp;console.log("Hello " + name + ", welcome to JavaScript!");<br>
+      }<br><br>
+      greetUser("Sajid");<br>
+      greetUser("Ali");
+    </div>
+    <p>
+      Here, <code>name</code> is a parameter. When calling the function, we pass arguments like <code>"Sajid"</code> and <code>"Ali"</code>. 
+      Each call produces personalized output.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Example 3: Function with Return Value</h2>
+    <div class="code-block">
+      function add(a, b) {<br>
+      &nbsp;&nbsp;return a + b;<br>
+      }<br><br>
+      let result = add(5, 7);<br>
+      console.log("Sum is:", result);
+    </div>
+    <p>
+      This function takes two parameters <code>a</code> and <code>b</code>, adds them, and returns the result. 
+      Without <code>return</code>, functions give <code>undefined</code>.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Types of Functions</h2>
+    <h3>1. Function Declaration</h3>
+    <div class="code-block">
+      function sayHello() {<br>
+      &nbsp;&nbsp;console.log("Hello!");<br>
+      }<br>
+      sayHello();
+    </div>
+
+    <h3>2. Function Expression</h3>
+    <div class="code-block">
+      const sayBye = function() {<br>
+      &nbsp;&nbsp;console.log("Goodbye!");<br>
+      };<br>
+      sayBye();
+    </div>
+
+    <h3>3. Arrow Function</h3>
+    <div class="code-block">
+      const multiply = (x, y) =&gt; x * y;<br>
+      console.log(multiply(4, 5));
+    </div>
+
+    <h3>4. Anonymous Function</h3>
+    <div class="code-block">
+      setTimeout(function() {<br>
+      &nbsp;&nbsp;console.log("Runs after 2 seconds");<br>
+      }, 2000);
+    </div>
+
+    <h3>5. IIFE (Immediately Invoked Function Expression)</h3>
+    <div class="code-block">
+      (function() {<br>
+      &nbsp;&nbsp;console.log("IIFE executed!");<br>
+      })();
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Function Parameters</h2>
+    <h3>Default Parameters</h3>
+    <div class="code-block">
+      function greet(name = "Guest") {<br>
+      &nbsp;&nbsp;console.log("Hello " + name);<br>
+      }<br><br>
+      greet("Sajid");<br>
+      greet();
+    </div>
+
+    <h3>Rest Parameters</h3>
+    <div class="code-block">
+      function sum(...numbers) {<br>
+      &nbsp;&nbsp;return numbers.reduce((total, num) =&gt; total + num, 0);<br>
+      }<br><br>
+      console.log(sum(1,2,3,4,5));
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Function Scope</h2>
+    <div class="code-block">
+      let globalVar = "I am global";<br><br>
+      function checkScope() {<br>
+      &nbsp;&nbsp;let localVar = "I am local";<br>
+      &nbsp;&nbsp;console.log(globalVar); // works<br>
+      &nbsp;&nbsp;console.log(localVar);  // works<br>
+      }<br><br>
+      checkScope();<br>
+      console.log(localVar); // Error
+    </div>
+    <p>
+      - Variables declared inside a function are <strong>local</strong>.<br>
+      - Variables declared outside are <strong>global</strong>.<br>
+      - Local variables are not accessible outside.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Higher Order Functions</h2>
+    <div class="code-block">
+      function operate(a, b, operation) {<br>
+      &nbsp;&nbsp;return operation(a, b);<br>
+      }<br><br>
+      let result = operate(5, 3, function(x, y) { return x + y; });<br>
+      console.log(result);
+    </div>
+    <p>
+      Functions can be passed as arguments or returned. These are called <strong>higher-order functions</strong>.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔹 Recursion</h2>
+    <div class="code-block">
+      function factorial(n) {<br>
+      &nbsp;&nbsp;if (n === 0) return 1;<br>
+      &nbsp;&nbsp;return n * factorial(n - 1);<br>
+      }<br><br>
+      console.log(factorial(5));
+    </div>
+    <p>
+      Recursion means a function calling itself until a condition is met. 
+      Here, factorial(5) = 5 × 4 × 3 × 2 × 1 = 120.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>✅ Summary</h2>
+    <p>
+      - Functions are reusable blocks of code.<br>
+      - Can take inputs (parameters) and return outputs.<br>
+      - Types include declaration, expression, arrow, anonymous, and IIFE.<br>
+      - Advanced concepts: default/rest parameters, scope, recursion, higher-order functions.<br>
+      Mastering functions is essential to becoming a strong JavaScript developer.
+    </p>
+  </div>
+</body>
+</html>
