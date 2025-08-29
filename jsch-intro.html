@@ -1,220 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Before React - Complete Preparation Guide</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JavaScript Before React — Full Guide (Every Section)</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #222;
+    :root{
+      --bg:#ffffff;
+      --text:#1a1a1a;
+      --muted:#444;
+      --card:#ffffffaa; /* glass */
+      --code:#e9ecef;   /* gray for code area */
+      --border:#dfe4ea;
+      --shadow: 0 8px 24px rgba(0,0,0,.09);
+      --radius: 18px;
+      --mono: Consolas, SFMono-Regular, Menlo, Monaco, "Liberation Mono", monospace;
+      --sans: Arial, Helvetica, sans-serif;
+      --accent:#0b7ddc;
     }
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.1rem;
-      color: #444;
-    }
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-    section {
-      margin-bottom: 2.5rem;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    section h2 {
-      margin-top: 0;
-      color: #111;
-    }
-    section h3 {
-      margin-top: 1.2rem;
-      color: #444;
-    }
-    p, ul, ol {
-      color: #333;
-    }
-    code {
-      background: rgba(128, 128, 128, 0.15);
-      padding: 0.2rem 0.4rem;
-      border-radius: 6px;
-      font-family: Consolas, monospace;
-      font-size: 0.95rem;
-    }
-    pre {
-      background: rgba(200, 200, 200, 0.3);
-      backdrop-filter: blur(6px);
-      padding: 1rem;
-      border-radius: 14px;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      section {
-        padding: 1rem;
-      }
-    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65}
+    header{padding:40px 16px;text-align:center;backdrop-filter: blur(10px);position:relative}
+    header h1{margin:0 0 8px;font-size:clamp(1.8rem,1.4rem+2.2vw,2.6rem)}
+    header p{margin:0 auto;max-width:900px;color:var(--muted)}
+    main{max-width:1100px;margin:0 auto;padding:20px 16px 56px}
+    section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin:16px 0}
+    section h2{margin-top:0;font-size:clamp(1.2rem,1.05rem+1.2vw,1.6rem)}
+    h3{margin:1rem 0 .35rem;font-size:1.05rem}
+    .desc{color:var(--muted);margin:.2rem 0 1rem}
+    ul,ol{margin:.3rem 0 .8rem 1.2rem}
+    li{margin:.25rem 0}
+    code{background:rgba(0,0,0,.06);padding:.08rem .35rem;border-radius:8px;font-family:var(--mono)}
+    pre{background:var(--code);border:1px solid var(--border);border-radius:14px;padding:14px;overflow:auto;position:relative}
+    pre code{background:transparent;padding:0}
+    .copy{position:absolute;right:10px;top:10px;border:none;border-radius:10px;padding:6px 10px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer}
+    .tip{border-left:4px solid var(--accent);padding:.6rem .8rem;background:#f5faff;border:1px solid #dcefff;border-radius:12px;margin:.8rem 0;color:#0b2d4d}
+    .pill{display:inline-block;border:1px solid var(--border);background:#f5f7fa;border-radius:999px;padding:.2rem .55rem;margin:.15rem .2rem 0 0;font-size:.85rem}
+    footer{padding:34px 16px;color:#666;text-align:center}
+    @media (max-width:720px){ section{padding:16px} }
   </style>
+  <script>
+    // Copy buttons for all pre blocks
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre').forEach((pre) => {
+        const btn = document.createElement('button');
+        btn.className = 'copy';
+        btn.type = 'button';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', async () => {
+          const text = pre.innerText.replace(/^Copy\n/, '');
+          try{ await navigator.clipboard.writeText(text); btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy',1200);}catch(e){btn.textContent='Error'}
+        });
+        pre.prepend(btn);
+      });
+    });
+  </script>
 </head>
 <body>
   <header>
-    <h1>JavaScript Before React - Complete Preparation Guide</h1>
-    <p>This page will teach you everything you must know in JavaScript (ES6+) before you start learning React. Each topic is explained in depth with examples.</p>
+    <h1>JavaScript Before React — Complete Preparation Guide</h1>
+    <p class="desc">A single-page, responsive reference covering <strong>every concept</strong> you should know before learning React. Plain white theme, glass‑morph code blocks in gray, Arial/sans-serif fonts, no navbar/sidebar.</p>
   </header>
 
   <main>
-    <section>
-      <h2>🔑 JavaScript Basics (Absolute Must)</h2>
-      <p>Before diving into React, you must be confident with these fundamentals. They form the building blocks of any JavaScript program.</p>
-
-      <h3>1. Variables & Scope</h3>
-      <p>Variables store data. JavaScript provides <code>var</code>, <code>let</code>, and <code>const</code>. The major difference is in their <strong>scope</strong> and mutability.</p>
-      <pre><code>let count = 0;       // can be updated, block scoped
-const PI = 3.14;     // cannot be reassigned
-var oldWay = 10;     // function scoped (avoid in modern JS)</code></pre>
-
-      <h3>2. Data Types</h3>
-      <p>JavaScript has <strong>primitive types</strong> such as string, number, boolean, null, undefined, symbol, bigint, and <strong>reference types</strong> such as objects, arrays, and functions.</p>
-
-      <h3>3. Operators</h3>
-      <p>Operators perform actions like math, comparisons, and logic.</p>
+    <!-- BASICS CORE -->
+    <section id="variables">
+      <h2>1) Variables &amp; Constants</h2>
+      <p class="desc">Store and label values. Understand scope rules and reassignment behavior.</p>
       <ul>
-        <li>Arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></li>
-        <li>Comparison: <code>===</code> (strict equality), <code>!==</code></li>
-        <li>Logical: <code>&&</code>, <code>||</code>, <code>!</code></li>
+        <li><code>let</code>: block‑scoped, reassignable.</li>
+        <li><code>const</code>: block‑scoped, <em>no</em> reassignment (but object contents can change).</li>
+        <li><code>var</code>: function‑scoped; avoid in modern JS due to hoisting quirks.</li>
       </ul>
+      <pre><code>let count = 0;
+const PI = 3.14159; // cannot reassign PI
+var legacy = 'avoid'; // function scoped
+</code></pre>
+      <div class="tip"><strong>Why React cares:</strong> Prefer <code>const</code> for values that shouldn't change and <code>let</code> for counters/temp. Predictable scopes reduce bugs in components.</div>
+    </section>
 
-      <h3>4. Strings</h3>
-      <p>Strings can be manipulated with methods and template literals.</p>
-      <pre><code>const name = "Sajid";
-console.log(`Hello ${name.toUpperCase()}!`);</code></pre>
+    <section id="datatypes">
+      <h2>2) Data Types</h2>
+      <p class="desc">Know primitives vs references and how they behave.</p>
+      <p>
+        Primitives: <span class="pill">string</span> <span class="pill">number</span> <span class="pill">boolean</span> <span class="pill">null</span> <span class="pill">undefined</span> <span class="pill">symbol</span> <span class="pill">bigint</span>
+        — Reference: <span class="pill">object</span> <span class="pill">array</span> <span class="pill">function</span>
+      </p>
+      <pre><code>typeof 'hi' // 'string'
+typeof 42   // 'number'
+typeof null // 'object' (historical quirk)
+Array.isArray([1,2]) // true
+</code></pre>
+    </section>
 
-      <h3>5. Conditionals</h3>
-      <p>Use <code>if</code>, <code>else if</code>, and <code>else</code> to execute code conditionally.</p>
+    <section id="operators">
+      <h2>3) Operators</h2>
+      <h3>Arithmetic &amp; Assignment</h3>
+      <pre><code>let x = 10; x += 5; // 15
+x++; // 16, postfix increment
+</code></pre>
+      <h3>Comparison &amp; Coercion</h3>
+      <p class="desc"><code>===</code> checks value &amp; type; <code>==</code> coerces (avoid unless you know rules).</p>
+      <pre><code>'2' == 2   // true (coercion)
+'2' === 2  // false (strict)
+</code></pre>
+      <h3>Logical &amp; Ternary</h3>
+      <pre><code>const ok = isReady &amp;&amp; hasData;
+const title = custom || 'Untitled';
+const label = done ? '✅' : '…';
+</code></pre>
+      <h3>Nullish Coalescing &amp; Logical Assignment</h3>
+      <pre><code>const n = input ?? 0;       // only uses 0 if input is null/undefined
+opts.theme ||= 'light';     // sets if falsy
+config.cache ??= {};        // sets if null/undefined
+</code></pre>
+    </section>
+
+    <section id="strings">
+      <h2>4) Strings &amp; Template Literals</h2>
+      <p class="desc">Interpolate values and use helpful methods.</p>
+      <pre><code>const name = 'Sajid';
+`Hello, ${name.toUpperCase()}!`;
+'  trim  '.trim(); // 'trim'
+'hello'.includes('lo'); // true
+</code></pre>
+    </section>
+
+    <section id="numbers">
+      <h2>5) Numbers &amp; Math</h2>
+      <pre><code>Math.round(2.6); // 3
+Math.floor(Math.random()*6)+1; // 1..6 dice
+Number.parseInt('42', 10); // 42
+Number.isNaN(NaN); // true
+</code></pre>
+    </section>
+
+    <section id="conditionals">
+      <h2>6) Conditionals</h2>
       <pre><code>if (score &gt;= 90) grade = 'A';
 else if (score &gt;= 75) grade = 'B';
-else grade = 'C';</code></pre>
+else grade = 'C';
 
-      <h3>6. Loops</h3>
-      <p>Loops allow repeating code efficiently.</p>
-      <pre><code>for (let i = 0; i &lt; 3; i++) {
-  console.log(i);
-}</code></pre>
+switch (role) {
+  case 'admin': allow(); break;
+  case 'user': view(); break;
+  default: deny();
+}
+</code></pre>
+    </section>
 
-      <h3>7. Functions</h3>
-      <p>Functions group logic into reusable blocks. Learn declaration, expression, and arrow functions.</p>
-      <pre><code>// Declaration
-function add(a, b){ return a + b; }
+    <section id="loops">
+      <h2>7) Loops</h2>
+      <h3>for / while / do..while</h3>
+      <pre><code>for (let i=0;i&lt;3;i++) console.log(i);
+let i=0; while(i&lt;3){ console.log(i++); }
+let j=0; do { console.log(j++); } while(j&lt;3);
+</code></pre>
+      <h3>for..of / for..in</h3>
+      <pre><code>for (const n of [10,20,30]) console.log(n);     // values
+for (const k in {a:1,b:2}) console.log(k);       // keys
+</code></pre>
+    </section>
+
+    <section id="functions">
+      <h2>8) Functions</h2>
+      <p class="desc">Different ways to declare; parameters, defaults, rest.</p>
+      <pre><code>// Declaration, hoisted
+function add(a,b){ return a+b }
+
 // Expression
-const sub = function(a, b){ return a - b; }
-// Arrow function
-const mul = (a, b) =&gt; a * b;</code></pre>
+const sub = function(a,b){ return a-b }
+
+// Arrow (lexical this)
+const mul = (a,b) =&gt; a*b;
+
+// Default &amp; Rest
+function greet(name = 'Guest'){ return `Hi ${name}` }
+function sum(...nums){ return nums.reduce((a,b)=&gt;a+b,0) }
+</code></pre>
     </section>
 
-    <section>
-      <h2>🧰 Intermediate JavaScript</h2>
-      <p>Once you are comfortable with basics, you must know how to work with arrays, objects, and ES6+ features like destructuring.</p>
-
-      <h3>Arrays</h3>
-      <p>Arrays are ordered lists. Common methods include <code>map</code>, <code>filter</code>, and <code>reduce</code>.</p>
-      <pre><code>const nums = [1,2,3,4];
-nums.map(x =&gt; x * 2);        // [2,4,6,8]
-nums.filter(x =&gt; x % 2 === 0); // [2,4]</code></pre>
-
-      <h3>Objects</h3>
-      <p>Objects hold key-value pairs.</p>
-      <pre><code>const user = { id: 1, name: "Aisha" };
-console.log(user.name);      // dot notation
-console.log(user["id"]);     // bracket notation</code></pre>
-
-      <h3>Destructuring & Spread</h3>
-      <p>ES6 introduces concise syntax for extracting and combining data.</p>
-      <pre><code>const { name } = user;  // destructuring
-const copy = { ...user, role: "admin" }; // spread operator</code></pre>
+    <section id="arrays">
+      <h2>9) Arrays</h2>
+      <h3>Common Methods</h3>
+      <pre><code>const arr = [1,2,3,4];
+arr.push(5); arr.pop(); arr.shift(); arr.unshift(0);
+arr.map(x =&gt; x*2);          // [2,4,6,8]
+arr.filter(x =&gt; x%2===0);   // [2,4]
+arr.reduce((a,b)=&gt;a+b,0);   // 10
+arr.find(x =&gt; x&gt;2);         // 3
+arr.some(x =&gt; x&gt;3);         // true
+arr.every(x =&gt; x&gt;0);        // true
+arr.forEach(x =&gt; console.log(x));
+</code></pre>
+      <div class="tip"><strong>React link:</strong> <code>map</code> is used all the time to render lists of JSX.</div>
     </section>
 
-    <section>
-      <h2>⚡ ES6+ Advanced</h2>
-      <p>These modern features are heavily used in React.</p>
+    <section id="objects">
+      <h2>10) Objects</h2>
+      <pre><code>const user = { id:1, name:'Aisha' };
+user.name;        // dot
+user['id'];       // bracket
+Object.keys(user);    // ['id','name']
+Object.values(user);  // [1,'Aisha']
+Object.entries(user); // [['id',1],['name','Aisha']]
+Object.assign({}, user, {role:'admin'});
+</code></pre>
+    </section>
 
-      <h3>Modules</h3>
+    <section id="destructuring">
+      <h2>11) Destructuring</h2>
+      <pre><code>const { name, id: userId } = user;
+const [first, ...rest] = [10,20,30];
+</code></pre>
+    </section>
+
+    <section id="spread-rest">
+      <h2>12) Spread &amp; Rest</h2>
+      <pre><code>const copy = { ...user, name: 'Sara' };
+const arr2 = [...[1,2], 3];
+function wrap(...items){ return items }
+</code></pre>
+      <div class="tip"><strong>React state:</strong> Use spread to create new objects/arrays instead of mutating existing state.</div>
+    </section>
+
+    <section id="shortc-optional">
+      <h2>13) Short‑circuiting &amp; Optional Chaining</h2>
+      <pre><code>const title = settings.title || 'Untitled';
+const safeCity = user.address?.city; // no error if address undefined
+</code></pre>
+    </section>
+
+    <section id="modules">
+      <h2>14) ES Modules (import/export)</h2>
       <pre><code>// math.js
 export const add = (a,b) =&gt; a+b;
 export default function mul(a,b){ return a*b }
 
 // app.js
-import mul, { add } from './math.js';</code></pre>
+import mul, { add } from './math.js';
+</code></pre>
+    </section>
 
-      <h3>Classes & Inheritance</h3>
+    <section id="classes-this">
+      <h2>15) Classes &amp; <code>this</code></h2>
       <pre><code>class Person{
   constructor(name){ this.name = name }
   hello(){ return `Hello ${this.name}` }
-}</code></pre>
+}
 
-      <h3>Promises & Async/Await</h3>
-      <pre><code>async function loadData(){
-  const res = await fetch('/api');
-  const data = await res.json();
-  console.log(data);
-}</code></pre>
+const p = new Person('Noor');
+p.hello(); // "Hello Noor"
+</code></pre>
+      <p class="desc"><strong>Arrow functions</strong> capture lexical <code>this</code>; regular methods use dynamic <code>this</code>.</p>
     </section>
 
-    <section>
-      <h2>🌐 Browser & APIs</h2>
-      <p>These are necessary to handle data in web applications.</p>
+    <section id="closures">
+      <h2>16) Closures</h2>
+      <pre><code>function counter(){
+  let c = 0;
+  return () =&gt; ++c; // remembers c
+}
+const inc = counter();
+inc(); // 1, then 2, ...
+</code></pre>
+    </section>
 
-      <h3>Fetch API</h3>
+    <section id="callbacks-hof">
+      <h2>17) Callbacks &amp; Higher‑Order Functions</h2>
+      <pre><code>function withLog(fn){
+  return (...args) =&gt; { console.log('call'); return fn(...args) }
+}
+const plus = withLog((a,b)=&gt;a+b);
+</code></pre>
+    </section>
+
+    <section id="promises">
+      <h2>18) Promises</h2>
+      <pre><code>fetch('/api')
+  .then(r =&gt; r.json())
+  .then(data =&gt; console.log(data))
+  .catch(console.error)
+  .finally(() =&gt; console.log('done'));
+</code></pre>
+    </section>
+
+    <section id="async-await">
+      <h2>19) Async / Await</h2>
+      <pre><code>async function load(){
+  try {
+    const res = await fetch('/api');
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+</code></pre>
+    </section>
+
+    <section id="events">
+      <h2>20) Events</h2>
+      <pre><code>document.querySelector('#btn')
+  .addEventListener('click', (e) =&gt; console.log('clicked'));
+</code></pre>
+      <p class="desc">Know bubbling vs capturing and how to stop propagation.</p>
+    </section>
+
+    <section id="dom">
+      <h2>21) Basic DOM Manipulation</h2>
+      <pre><code>const el = document.createElement('li');
+el.textContent = 'Item';
+document.querySelector('ul').appendChild(el);
+</code></pre>
+    </section>
+
+    <section id="fetch">
+      <h2>22) Fetch API</h2>
       <pre><code>async function getUsers(){
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  if(!res.ok) throw new Error('Network');
   return res.json();
-}</code></pre>
-
-      <h3>Storage</h3>
-      <pre><code>localStorage.setItem("token", "abc123");
-const token = localStorage.getItem("token");</code></pre>
+}
+</code></pre>
     </section>
 
-    <section>
-      <h2>✅ Summary Roadmap</h2>
+    <section id="storage">
+      <h2>23) localStorage &amp; sessionStorage</h2>
+      <pre><code>localStorage.setItem('token','abc123');
+const token = localStorage.getItem('token');
+sessionStorage.removeItem('token');
+</code></pre>
+    </section>
+
+    <section id="json">
+      <h2>24) JSON</h2>
+      <pre><code>const s = JSON.stringify({ a:1 });
+const obj = JSON.parse(s);
+</code></pre>
+    </section>
+
+    <section id="event-loop">
+      <h2>25) Event Loop &amp; Microtasks</h2>
+      <pre><code>console.log('A');
+queueMicrotask(() =&gt; console.log('microtask'));
+setTimeout(() =&gt; console.log('timeout'));
+console.log('B'); // A, B, microtask, timeout
+</code></pre>
+    </section>
+
+    <section id="hoisting">
+      <h2>26) Hoisting</h2>
+      <pre><code>console.log(x); // undefined (var hoisted)
+var x = 1;
+// let/const are hoisted but in Temporal Dead Zone (access throws before init)
+</code></pre>
+    </section>
+
+    <section id="immutability">
+      <h2>27) Immutability</h2>
+      <pre><code>const state = { count: 0 };
+// ❌ state.count++ (mutation)
+// ✅ create a new object
+const next = { ...state, count: state.count + 1 };
+</code></pre>
+    </section>
+
+    <section id="copy-depth">
+      <h2>28) Shallow vs Deep Copy</h2>
+      <pre><code>const a = { n:1, nested:{ x:1 } };
+const shallow = { ...a };                // shares nested reference
+const deep = JSON.parse(JSON.stringify(a)); // naive deep copy
+</code></pre>
+    </section>
+
+    <section id="error-handling">
+      <h2>29) Error Handling</h2>
+      <pre><code>try {
+  risky();
+} catch (e) {
+  console.error(e.message);
+} finally {
+  cleanup();
+}
+</code></pre>
+    </section>
+
+    <section id="strict-mode">
+      <h2>30) Strict Mode</h2>
+      <pre><code>'use strict';
+// catches silent errors, disallows some bad patterns
+</code></pre>
+    </section>
+
+    <section id="roadmap">
+      <h2>✅ Summary Roadmap (Order to Learn)</h2>
       <ol>
-        <li>Basics → variables, types, operators, functions</li>
-        <li>Arrays & Objects → CRUD, map, filter, reduce</li>
-        <li>ES6 Essentials → arrow functions, destructuring, spread/rest</li>
-        <li>Advanced → modules, classes, promises, async/await</li>
-        <li>Browser APIs → fetch, localStorage, JSON</li>
+        <li>Variables, Types, Operators, Strings, Numbers</li>
+        <li>Conditionals, Loops, Functions (default/rest)</li>
+        <li>Arrays &amp; Objects → map/filter/reduce + Object.*</li>
+        <li>Destructuring, Spread/Rest, Short‑circuit, Optional Chaining, Nullish</li>
+        <li>Modules, Classes &amp; this, Closures, HOF</li>
+        <li>Promises &amp; Async/Await, Events, DOM</li>
+        <li>Fetch, Storage, JSON</li>
+        <li>Event Loop, Hoisting, Immutability, Copies</li>
+        <li>Error handling, Strict mode</li>
       </ol>
+      <div class="tip">Practice: build tiny 10–30 line snippets for each section, then later convert them into React components using state and props.</div>
     </section>
   </main>
 
   <footer>
-    <p>Prepared as a complete JavaScript foundation guide before learning React.</p>
+    Built for React prep • No sidebar, minimal white UI • Glass-morph gray code blocks with copy buttons
   </footer>
 </body>
 </html>
