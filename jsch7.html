@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Arrays & Methods (In-Depth Guide)</title>
+  <meta name="description" content="Complete in-depth guide to JavaScript arrays and their methods with explanations, code examples, and best practices.">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.7;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      font-weight: bold;
+      margin-top: 30px;
+      color: #111;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .code-block {
+      background: rgba(220, 220, 220, 0.25);
+      border-radius: 15px;
+      padding: 15px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Arrays & Methods (In-Depth)</h1>
+  <p>
+    Arrays are one of the most important data structures in JavaScript. They allow us to store multiple values in a single variable, 
+    and JavaScript provides a rich set of built-in methods for working with them.
+    In this page, we’ll go step by step: from the basics of arrays, to every method with code examples, and best practices.
+  </p>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <h2>1. What is an Array?</h2>
+    <p>
+      An <b>array</b> is a list-like object used to store multiple values in a single variable.  
+      Arrays are <b>zero-indexed</b>, meaning the first element is at position <code>0</code>.  
+      They can store mixed data types (numbers, strings, objects, even other arrays).
+    </p>
+    <div class="code-block">
+let fruits = ["Apple", "Banana", "Mango"];
+console.log(fruits[0]); // "Apple"
+console.log(fruits.length); // 3
+    </div>
+    <p>
+      - Arrays in JavaScript are actually special <code>objects</code>.  
+      - The <b>length</b> property dynamically updates when you add or remove elements.  
+      - Arrays are stored in contiguous memory internally, optimized for fast lookups by index.
+    </p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <h2>2. Basic Methods</h2>
+
+    <h3>push()</h3>
+    <p>Adds an element to the <b>end</b> of the array.</p>
+    <div class="code-block">
+let arr = [1, 2, 3];
+arr.push(4);
+console.log(arr); // [1, 2, 3, 4]
+    </div>
+    <p><b>Complexity:</b> O(1) usually.</p>
+
+    <h3>pop()</h3>
+    <p>Removes the <b>last</b> element from the array.</p>
+    <div class="code-block">
+let arr = [1, 2, 3];
+arr.pop();
+console.log(arr); // [1, 2]
+    </div>
+
+    <h3>shift()</h3>
+    <p>Removes the <b>first</b> element (shifts all others).</p>
+    <div class="code-block">
+let arr = [10, 20, 30];
+arr.shift();
+console.log(arr); // [20, 30]
+    </div>
+    <p><b>Note:</b> Slower than <code>pop()</code> since all elements shift → O(n).</p>
+
+    <h3>unshift()</h3>
+    <p>Adds elements to the <b>start</b> of the array.</p>
+    <div class="code-block">
+let arr = [20, 30];
+arr.unshift(10);
+console.log(arr); // [10, 20, 30]
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <h2>3. Iteration Methods</h2>
+
+    <h3>forEach()</h3>
+    <p>Executes a function once for each array element (no return value).</p>
+    <div class="code-block">
+[1, 2, 3].forEach(num => console.log(num * 2));
+// Output: 2, 4, 6
+    </div>
+
+        <h3>map()</h3>
+    <p>
+      The <b>map()</b> method in JavaScript is used to <b>transform</b> each element of an array 
+      and return a <b>new array</b> with the results. Importantly, <code>map()</code> does not 
+      change (mutate) the original array—it always returns a fresh one.
+    </p>
+
+    <h4>📌 Syntax:</h4>
+    <div class="code-block">
+array.map(function(currentValue, index, array) {
+   // return new value for the new array
+}, thisArg);
+    </div>
+    <ul>
+      <li><b>currentValue</b> → the element currently being processed.</li>
+      <li><b>index</b> → (optional) index of the element.</li>
+      <li><b>array</b> → (optional) the original array on which map() was called.</li>
+      <li><b>thisArg</b> → (optional) value to use as <code>this</code> inside the callback.</li>
+    </ul>
+
+    <h4>✅ Example 1: Basic Transformation</h4>
+    <div class="code-block">
+{
+  let numbers = [1, 2, 3, 4];
+  let doubled = numbers.map(num => num * 2);
+  console.log(doubled); // [2, 4, 6, 8]
+  console.log(numbers); // [1, 2, 3, 4] (unchanged)
+}
+    </div>
+    <p>
+      Each element is doubled, and a new array is returned. Notice that the 
+      original <code>numbers</code> array is not modified.
+    </p>
+
+    <h4>✅ Example 2: Using index parameter</h4>
+    <div class="code-block">
+{
+  let fruits = ["Apple", "Banana", "Cherry"];
+  let labeled = fruits.map((fruit, index) => `${index + 1}. ${fruit}`);
+  console.log(labeled); // ["1. Apple", "2. Banana", "3. Cherry"]
+}
+    </div>
+    <p>
+      Here we used the <code>index</code> parameter to add numbering to each fruit.
+    </p>
+
+    <h4>✅ Example 3: Working with Objects</h4>
+    <div class="code-block">
+{
+  let users = [
+    {name: "Alice", age: 20},
+    {name: "Bob", age: 25},
+    {name: "Charlie", age: 30}
+  ];
+
+  let names = users.map(user => user.name);
+  console.log(names); // ["Alice", "Bob", "Charlie"]
+}
+    </div>
+    <p>
+      A very common use of <code>map()</code> is extracting a single property 
+      from an array of objects.
+    </p>
+
+    <h4>✅ Example 4: Chaining map()</h4>
+    <div class="code-block">
+{
+  let nums = [1, 2, 3, 4];
+  let result = nums
+    .map(x => x * 2)     // double each number
+    .map(x => x + 1);    // then add 1
+  console.log(result); // [3, 5, 7, 9]
+}
+    </div>
+    <p>
+      Since <code>map()</code> always returns a new array, 
+      you can chain multiple <code>map()</code> calls.
+    </p>
+
+    <h4>⚠️ Common Mistakes</h4>
+    <ul>
+      <li><b>Forgetting return:</b> In regular functions, you must return a value. Without return, the new array will contain <code>undefined</code>.</li>
+      <li><b>Expecting mutation:</b> <code>map()</code> does not change the original array. Use <code>forEach()</code> if you want side effects instead.</li>
+    </ul>
+
+    <h4>💡 Real-World Use Cases</h4>
+    <ul>
+      <li>Converting an array of numbers (e.g., Celsius → Fahrenheit).</li>
+      <li>Extracting fields from database results (e.g., <code>users.map(u => u.id)</code>).</li>
+      <li>Generating HTML elements from data (in React/JS frameworks).</li>
+    </ul>
+
+
+    <h3>filter()</h3>
+    <p>Returns a new array with elements that pass a condition.</p>
+    <div class="code-block">
+let nums = [5, 12, 8, 130, 44];
+let big = nums.filter(x => x > 10);
+console.log(big); // [12, 130, 44]
+    </div>
+
+    <h3>reduce()</h3>
+    <p>Reduces the array to a single value.</p>
+    <div class="code-block">
+let nums = [1, 2, 3, 4];
+let sum = nums.reduce((acc, val) => acc + val, 0);
+console.log(sum); // 10
+    </div>
+
+    <h3>some()</h3>
+    <p>Checks if at least one element satisfies a condition.</p>
+    <div class="code-block">
+let nums = [1, 2, 3];
+console.log(nums.some(x => x > 2)); // true
+    </div>
+
+    <h3>every()</h3>
+    <p>Checks if <b>all</b> elements satisfy a condition.</p>
+    <div class="code-block">
+let nums = [2, 4, 6];
+console.log(nums.every(x => x % 2 === 0)); // true
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <h2>4. Searching & Index Methods</h2>
+
+    <h3>find()</h3>
+    <p>Returns the first element that matches a condition.</p>
+    <div class="code-block">
+let arr = [10, 20, 30];
+console.log(arr.find(x => x > 15)); // 20
+    </div>
+
+    <h3>findIndex()</h3>
+    <p>Returns the index of the first matching element.</p>
+    <div class="code-block">
+let arr = [10, 20, 30];
+console.log(arr.findIndex(x => x > 15)); // 1
+    </div>
+
+    <h3>indexOf()</h3>
+    <p>Finds the index of a value.</p>
+    <div class="code-block">
+let arr = ["a", "b", "c"];
+console.log(arr.indexOf("b")); // 1
+    </div>
+
+    <h3>lastIndexOf()</h3>
+    <p>Finds the last occurrence of a value.</p>
+    <div class="code-block">
+let arr = ["a", "b", "c", "b"];
+console.log(arr.lastIndexOf("b")); // 3
+    </div>
+
+    <h3>includes()</h3>
+    <p>Checks if an array contains a value.</p>
+    <div class="code-block">
+let arr = [1, 2, 3];
+console.log(arr.includes(2)); // true
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <h2>5. Modification Methods</h2>
+
+    <h3>slice()</h3>
+    <p>Returns a shallow copy of a portion of an array.</p>
+    <div class="code-block">
+let arr = [1, 2, 3, 4, 5];
+console.log(arr.slice(1, 3)); // [2, 3]
+    </div>
+
+    <h3>splice()</h3>
+    <p>Adds/removes elements in place.</p>
+    <div class="code-block">
+let arr = [1, 2, 3, 4];
+arr.splice(1, 2, 99); 
+console.log(arr); // [1, 99, 4]
+    </div>
+
+    <h3>concat()</h3>
+    <p>Merges arrays into a new one.</p>
+    <div class="code-block">
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+console.log(arr1.concat(arr2)); // [1, 2, 3, 4]
+    </div>
+
+    <h3>join()</h3>
+    <p>Converts array into string with separator.</p>
+    <div class="code-block">
+let arr = ["Hello", "World"];
+console.log(arr.join(" ")); // "Hello World"
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <h2>6. Sorting & Reversing</h2>
+    <h3>sort()</h3>
+    <p>Sorts the array (by default lexicographic).</p>
+    <div class="code-block">
+let arr = [10, 2, 5];
+arr.sort();
+console.log(arr); // [10, 2, 5] → "wrong" lexicographic
+arr.sort((a, b) => a - b);
+console.log(arr); // [2, 5, 10]
+    </div>
+
+    <h3>reverse()</h3>
+    <p>Reverses the array in place.</p>
+    <div class="code-block">
+let arr = [1, 2, 3];
+arr.reverse();
+console.log(arr); // [3, 2, 1]
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <h2>7. Flattening & Advanced</h2>
+
+    <h3>flat()</h3>
+    <p>Flattens nested arrays.</p>
+    <div class="code-block">
+let arr = [1, [2, [3, 4]]];
+console.log(arr.flat(2)); // [1, 2, 3, 4]
+    </div>
+
+    <h3>flatMap()</h3>
+    <p>Maps + flattens by one level.</p>
+    <div class="code-block">
+let arr = [1, 2, 3];
+console.log(arr.flatMap(x => [x, x*2]));
+// [1, 2, 2, 4, 3, 6]
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. Summary & Best Practices</h2>
+    <ul>
+      <li>Use <code>map</code>, <code>filter</code>, <code>reduce</code> for clean functional style.</li>
+      <li>Use <code>slice</code> for copies instead of <code>splice</code> unless you need mutation.</li>
+      <li>Be careful with <code>sort()</code> since default is string-based.</li>
+      <li><code>push</code>/<code>pop</code> are faster than <code>shift</code>/<code>unshift</code>.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

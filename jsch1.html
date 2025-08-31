@@ -4,150 +4,227 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JavaScript Datatypes Explained</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #2c3e50;
-      margin: 0;
-      padding: 20px;
-      line-height: 1.7;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    .description {
-      text-align: center;
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin-top: 25px;
-      color: #222;
-    }
-
-    p {
-      font-size: 1rem;
-      margin-bottom: 12px;
-    }
-
-    pre {
-      background: rgba(200, 200, 200, 0.3);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      overflow-x: auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-
-    code {
-      font-family: Consolas, monospace;
-      color: #d6336c;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 15px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      h2 {
-        font-size: 1.3rem;
-      }
-    }
-  </style>
+<link rel="stylesheet" href="jschSTYLE.css">
 </head>
 <body>
+  <header>
+    <h1>JavaScript Datatypes</h1>
+    <p>
+      In JavaScript, datatypes define the type of values we can work with.
+      They are divided into two main categories: <b>Primitive</b> (call by value) and <b>Non-Primitive</b> (call by reference).
+      Let’s explore each type in detail with examples.
+    </p>
+  </header>
 
-  <h1>JavaScript Datatypes</h1>
-  <p class="description">
-    In this page, we will learn about all the fundamental datatypes in JavaScript with detailed explanations 
-    and examples. Each section explains the concept clearly and provides sample code for better understanding.
-  </p>
+  <!-- Primitive Datatypes -->
+  <section>
+    <h2>Primitive Datatypes (Call by Value)</h2>
+    <p>
+      Primitive datatypes are stored and copied <b>by value</b>.
+      This means when you assign a primitive value to another variable,
+      JavaScript copies the actual value instead of the memory reference.
+    </p>
+    <p>There are <b>7 primitive datatypes</b> in JavaScript:</p>
 
-  <h2>1. String</h2>
-  <p>A <b>String</b> is a sequence of characters used to represent text. Strings can be written using single quotes, double quotes, or backticks. They are immutable, meaning once created, they cannot be changed directly. JavaScript provides many methods for working with strings, such as <code>toUpperCase()</code>, <code>slice()</code>, and <code>includes()</code>.</p>
-  <pre><code>let name = "Sajid";
-console.log("Hello, " + name); // Hello, Sajid
-console.log(name.length);      // 5</code></pre>
+    <h3>1. String</h3>
+    <p>
+      A <b>String</b> is a sequence of characters used to represent text.
+      Strings are written inside quotes (single, double, or backticks) and are immutable(once you create a string, you
+      cannot change its characters directly.).
+      They provide many built-in methods such as <code>toUpperCase()</code>, <code>slice()</code>, and
+      <code>includes()</code>.
+      <br><b>typeof:</b> Always returns <code>"string"</code>.
+    </p>
+    <pre><code>let name = "Sajid";
+console.log(typeof name);        // "string"
+console.log(name.toUpperCase()); // "SAJID"
+console.log(name.includes("ji")); // true
+</code></pre>
 
-  <h2>2. Number</h2>
-  <p>The <b>Number</b> type represents both integers and floating-point numbers. JavaScript does not have separate types for integers and decimals. It also supports special values like <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code> (Not-a-Number).</p>
-  <pre><code>let a = 10;
-let b = 3.5;
-console.log(a + b); // 13.5
-console.log(a / b); // 2.857142857...</code></pre>
+    <h3>2. Number</h3>
+    <p>
+      A <b>Number</b> in JavaScript represents both integers and floating-point (decimal) values.
+      JavaScript does not have separate types for integers and floats — everything numeric is stored as
+      <code>Number</code>.
+      Numbers are also <b>immutable</b>, which means once a number is created, it cannot be directly changed.
+      Mathematical operations always produce a <b>new value</b> instead of modifying the original.
+      <br><b>typeof:</b> Always returns <code>"number"</code> (except for <code>BigInt</code>).
+    </p>
+    <pre><code>let a = 10;
+let b = a; 
+b = b + 5;      
 
-  <h2>3. Boolean</h2>
-  <p>A <b>Boolean</b> has only two values: <code>true</code> or <code>false</code>. It is commonly used for decision making in conditions and logical operations. Expressions like comparisons return boolean values.</p>
-  <pre><code>let isLoggedIn = true;
-let age = 18;
-console.log(age >= 18); // true
-console.log(isLoggedIn); // true</code></pre>
+console.log(a); // 10  (unchanged, since numbers are immutable)
+console.log(b); // 15  (new value created)
 
-  <h2>4. Null</h2>
-  <p><b>Null</b> represents intentional emptiness. It is a special value used to indicate "no value". Unlike <code>undefined</code>, which happens by default, <code>null</code> is usually assigned explicitly.</p>
-  <pre><code>let car = null;
+console.log(typeof a); // "number"
+console.log(1 / 0);    // Infinity
+console.log("abc" * 2); // NaN (Not-a-Number)
+</code></pre>
+
+    <h3>3. Boolean</h3>
+    <p>
+      A <b>Boolean</b> represents one of two values: <code>true</code> or <code>false</code>.
+      It is commonly used in conditional statements and logical operations.
+      Booleans are <b>immutable</b>, meaning once a boolean value is created, it cannot be changed.
+      Any operation on booleans results in a new value instead of modifying the existing one.
+      <br><b>typeof:</b> Always returns <code>"boolean"</code>.
+    </p>
+    <pre><code>let isAdult = true;
+let canVote = false;
+
+console.log(typeof isAdult);  // "boolean"
+console.log(5 > 3);           // true
+console.log(10 === 5);        // false
+</code></pre>
+
+    <h3>4. Null</h3>
+    <p>
+      <b>Null</b> is a special value that represents intentional emptiness or "no value".
+      It is usually assigned explicitly when you want to clear or reset a variable.
+      Being a primitive, <b>null is immutable</b> — you cannot change it directly.
+      <br>⚠️ However, due to a long-standing bug in JavaScript,
+      <code>typeof null</code> incorrectly returns <code>"object"</code>.
+      <br><b>typeof:</b> Returns <code>"object"</code>.
+    </p>
+    <pre><code>let car = null;
+
 console.log(car);        // null
-console.log(typeof car); // "object" (quirk in JS)</code></pre>
+console.log(typeof car); // "object"  (quirk in JavaScript)
+</code></pre>
 
-  <h2>5. Undefined</h2>
-  <p><b>Undefined</b> means a variable has been declared but no value has been assigned yet. Functions also return <code>undefined</code> if they do not explicitly return a value.</p>
-  <pre><code>let x;
-console.log(x); // undefined
+    <h3>5. Undefined</h3>
+    <p>
+      <b>Undefined</b> is a special datatype that indicates a variable has been declared but no value has been assigned
+      yet.
+      It is also returned by functions that do not explicitly return a value.
+      Being a primitive, <b>undefined is immutable</b>.
+      <br><b>typeof:</b> Returns <code>"undefined"</code>.
+    </p>
+    <pre><code>let x;
+console.log(x);           // undefined
 
 function greet() {}
-console.log(greet()); // undefined</code></pre>
+console.log(greet());     // undefined
 
-  <h2>6. Symbol</h2>
-  <p>A <b>Symbol</b> is a unique and immutable primitive value introduced in ES6. Even if two symbols have the same description, they are always different. Symbols are often used as object keys to avoid property name conflicts.</p>
-  <pre><code>let id = Symbol("id");
-let user = { name: "Sajid", [id]: 123 };
-console.log(user.name); // Sajid
-console.log(user[id]);  // 123</code></pre>
+console.log(typeof x);    // "undefined"
+console.log(typeof greet()); // "undefined"
 
-  <h2>7. BigInt</h2>
-  <p><b>BigInt</b> is a special numeric type used to handle very large integers beyond the safe limit of <code>Number</code>. It is created by appending <code>n</code> to the end of an integer.</p>
-  <pre><code>let big = 123456789012345678901234567890n;
+function hello() {}
+console.log(hello()); // undefined</code></pre>
+
+    <h3>6. Symbol</h3>
+    <p>
+      <b>Symbol</b> is a unique and immutable primitive value introduced in ES6.
+      Even if two symbols have the same description, they are always different.
+      Symbols are often used as <b>object keys</b> to avoid property name conflicts
+      and to create hidden properties that don’t show up in normal object iteration.
+      <br><b>typeof:</b> Returns <code>"symbol"</code>.
+    </p>
+    <pre><code>let id1 = Symbol("id");
+let id2 = Symbol("id");
+
+console.log(id1 === id2); // false (always unique)
+
+// Using Symbol as an object key
+let user = {
+  name: "Sajid",
+  age: 20,
+  [id1]: 123
+};
+
+console.log(user.name);     // Sajid
+console.log(user[id1]);     // 123
+console.log(Object.keys(user)); // ["name", "age"] (symbol key is hidden)
+
+console.log(typeof id1);    // "symbol"
+</code></pre>
+
+    <h3>7. BigInt</h3>
+    <p>
+      <b>BigInt</b> is a special numeric datatype introduced in ES2020.
+      It is used to represent integers that are larger than the safe limit of the
+      <code>Number</code> type (which is <code>2^53 - 1</code>).
+      BigInt is created by appending <code>n</code> at the end of an integer literal.
+      Unlike regular numbers, BigInt can handle very large integers without losing precision.
+      <br><b>typeof:</b> Returns <code>"bigint"</code>.
+    </p>
+    <pre><code>let big = 123456789012345678901234567890n;
 console.log(big);       // 123456789012345678901234567890n
-console.log(big + 10n); // 123456789012345678901234567900n</code></pre>
 
-  <h2>8. Object</h2>
-  <p>An <b>Object</b> is a collection of key-value pairs. Keys are usually strings (or symbols) and values can be any datatype, including functions or other objects. Objects are the building blocks of JavaScript.</p>
-  <pre><code>let user = {
+console.log(big + 10n); // 123456789012345678901234567900n
+
+// Mixing BigInt with Number throws an error
+// console.log(big + 5); ❌ TypeError
+
+console.log(typeof big); // "bigint"
+</code></pre>
+  </section>
+
+  <!-- Non-Primitive Datatypes -->
+  <section>
+    <h2>Non-Primitive Datatypes (Call by Reference)</h2>
+    <p>
+      Non-primitive datatypes are stored and copied <b>by reference</b>.
+      This means when you assign one variable to another, both variables
+      point to the same memory location. Changing one affects the other.
+    </p>
+    <p>There are <b>3 non-primitive datatypes</b> in JavaScript:</p>
+
+    <h3>9. Array</h3>
+    <p>
+      An <b>Array</b> is a special type of object that stores an ordered collection of values.  
+      Each value is called an element, and arrays are <b>zero-indexed</b>, meaning the first element is at index <code>0</code>.  
+      Arrays can contain elements of any datatype, including other arrays or objects.  
+      JavaScript provides many built-in methods like <code>push()</code>, <code>pop()</code>, <code>map()</code>, <code>filter()</code>, and <code>forEach()</code> for manipulating arrays.  
+      <br><b>typeof:</b> Returns <code>"object"</code> (because arrays are implemented as objects in JavaScript).
+    </p>
+    <pre><code>let fruits = ["apple", "banana", "mango"];
+
+console.log(fruits[0]);      // apple
+fruits.push("orange");       // adds "orange" at the end
+console.log(fruits.length);  // 4
+console.log(typeof fruits);  // "object"
+</code></pre>
+
+    <h3>8. Object</h3>
+    <p>
+      An <b>Object</b> is a collection of key-value pairs.  
+      Keys are usually <code>strings</code> (or <code>symbols</code>), and values can be of any datatype, 
+      including numbers, strings, booleans, functions, or even other objects.  
+      Objects are the foundation of JavaScript and are widely used to represent real-world entities.  
+      <br><b>typeof:</b> Returns <code>"object"</code>.
+    </p>
+    <pre><code>let user = {
   name: "Sajid",
   age: 20,
   isAdmin: true
 };
 
 console.log(user.name);    // Sajid
-console.log(user["age"]);  // 20</code></pre>
+console.log(user["age"]);  // 20
+console.log(typeof user);  // "object"
+</code></pre>
 
-  <h2>9. Array</h2>
-  <p>An <b>Array</b> is a special type of object used to store ordered collections of values. Arrays are zero-indexed, meaning the first element is at index 0. They come with many useful methods like <code>push()</code>, <code>pop()</code>, <code>map()</code>, and <code>filter()</code>.</p>
-  <pre><code>let fruits = ["apple", "banana", "mango"];
-console.log(fruits[0]);      // apple
-fruits.push("orange");
-console.log(fruits.length);  // 4</code></pre>
-
-  <h2>10. Function</h2>
-  <p>A <b>Function</b> is a reusable block of code designed to perform a task. It can accept parameters, process them, and return a result. Functions improve modularity and reduce repetition in code.</p>
-  <pre><code>function add(a, b) {
+    <h3>10. Function</h3>
+    <p>
+      A <b>Function</b> is a reusable block of code designed to perform a specific task.  
+      Functions can accept inputs called <b>parameters</b>, process them, and return an output using the <code>return</code> keyword.  
+      They help in reducing repetition, improving modularity, and making code more organized.  
+      JavaScript supports different types of functions such as <b>declaration functions</b>, <b>expression functions</b>, and <b>arrow functions</b>.  
+      <br><b>typeof:</b> Returns <code>"function"</code> (special case in JavaScript — technically functions are objects, but <code>typeof</code> gives "function" for clarity).
+    </p>
+    <pre><code>function add(a, b) {
   return a + b;
 }
 
-console.log(add(5, 3)); // 8</code></pre>
+console.log(add(5, 3));   // 8
+console.log(typeof add);  // "function"
+</code></pre>
+  </section>
 
+  <footer>
+    © 2025 JavaScript Learning Guide. All rights reserved.
+  </footer>
 </body>
 </html>
