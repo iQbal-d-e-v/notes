@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,14 +86,15 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Navbar with search -->
   <nav>
-    <input type="search" placeholder="Search (not functional, just UI)">
+    <input type="search" id="searchInput" onkeyup="searchCards()" placeholder="Search notes...">
   </nav>
 
   <!-- Cards linking to other pages -->
-  <main>
+  <main id="cardsContainer">
     <a href="javascript-notes.html" class="card">
       <h2>JavaScript Notes</h2>
       <p>All basics and advanced concepts of JavaScript with examples.</p>
@@ -113,5 +115,22 @@
       <p>Small projects and practice exercises with code.</p>
     </a>
   </main>
+
+  <script>
+    function searchCards() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(input)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
+
 </html>

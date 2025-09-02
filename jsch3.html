@@ -1,76 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JavaScript Strings & String Methods – Deep Explanation</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #111;
-      line-height: 1.6;
-      padding: 0;
-    }
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    header h1 {
-      margin-bottom: 10px;
-      font-size: 2rem;
-    }
-    header p {
-      color: #555;
-      font-size: 1rem;
-    }
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    section {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    h2, h3 {
-      margin-top: 0;
-    }
-    pre {
-      background: rgba(240, 240, 240, 0.6);
-      border-radius: 10px;
-      padding: 12px;
-      overflow-x: auto;
-      font-size: 0.95rem;
-    }
-    code {
-      font-family: Consolas, monospace;
-    }
-    ul, ol {
-      padding-left: 20px;
-    }
-    footer {
-      text-align: center;
-      color: #555;
-      padding: 30px 10px;
-    }
-    @media (max-width: 600px) {
-      section {
-        padding: 16px;
-      }
-      header h1 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="jschSTYLE.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
 </head>
+
 <body>
+  <button class="toggle-btn" onclick="toggleTheme()"></button>
   <header>
     <h1>JavaScript Strings & String Methods</h1>
     <p>Deep explanation with examples, compiled in a clean and minimal website format.</p>
@@ -81,10 +23,12 @@
       <h2>1. What is a String in JavaScript?</h2>
       <ul>
         <li>A <strong>string</strong> is a <strong>sequence of characters</strong> enclosed in quotes.</li>
-        <li>Strings are <strong>immutable</strong> – once created, you can’t change characters inside it; you create a <em>new</em> string.</li>
-        <li>You can use <code>'single'</code>, <code>"double"</code>, or <code>`backticks`</code> (template literals).</li>
+        <li>Strings are <strong>immutable</strong> – once created, you can’t change characters inside it; you create a
+          <em>new</em> string.</li>
+        <li>You can use <code>'single'</code>, <code>"double"</code>, or <code>`backticks`</code> (template literals).
+        </li>
       </ul>
-      <pre><code>let str1 = "Hello";    // double quotes
+      <pre><code class="language-javascript">let str1 = "Hello";    // double quotes
 let str2 = 'World';    // single quotes
 let str3 = `Hello ${str2}`; // template literal
 console.log(str3); // Hello World</code></pre>
@@ -96,7 +40,7 @@ console.log(str3); // Hello World</code></pre>
         <li>A string is array-like (you can access characters by index), but not an actual array.</li>
         <li>Indices start at 0.</li>
       </ul>
-      <pre><code>let word = "JavaScript";
+      <pre><code class="language-javascript">let word = "JavaScript";
 console.log(word[0]);  // J
 console.log(word[4]);  // S
 console.log(word.length); // 10</code></pre>
@@ -106,7 +50,7 @@ console.log(word.length); // 10</code></pre>
       <h2>3. String Methods in JavaScript</h2>
       <h3>3.1 length (Property)</h3>
       <p>Gives the number of characters.</p>
-      <pre><code>let txt = "Hello World";
+      <pre><code class="language-javascript">let txt = "Hello World";
 console.log(txt.length); // 11</code></pre>
 
       <h3>3.2 Case Conversion</h3>
@@ -114,7 +58,7 @@ console.log(txt.length); // 11</code></pre>
         <li>.toUpperCase() → Converts to UPPERCASE.</li>
         <li>.toLowerCase() → Converts to lowercase.</li>
       </ul>
-      <pre><code>let msg = "JavaScript";
+      <pre><code class="language-javascript">let msg = "JavaScript";
 console.log(msg.toUpperCase()); // "JAVASCRIPT"
 console.log(msg.toLowerCase()); // "javascript"</code></pre>
 
@@ -126,44 +70,44 @@ console.log(msg.toLowerCase()); // "javascript"</code></pre>
         <li>.startsWith(substring)</li>
         <li>.endsWith(substring)</li>
       </ul>
-      <pre><code>let sentence = "I love JavaScript";
+      <pre><code class="language-javascript">let sentence = "I love JavaScript";
 console.log(sentence.indexOf("love"));  // 2
 console.log(sentence.includes("Java")); // true
 console.log(sentence.startsWith("I"));  // true
 console.log(sentence.endsWith("pt"));   // true</code></pre>
 
       <h3>3.4 Extracting Part of a String</h3>
-      <pre><code>let str = "Hello World";
+      <pre><code class="language-javascript">let str = "Hello World";
 console.log(str.slice(0, 5));      // "Hello"
 console.log(str.substring(6, 11)); // "World"
 console.log(str.substr(6, 5));     // "World"</code></pre>
 
       <h3>3.5 Replacing</h3>
-      <pre><code>let text = "I love JavaScript. JavaScript is fun.";
+      <pre><code class="language-javascript">let text = "I love JavaScript. JavaScript is fun.";
 console.log(text.replace("JavaScript", "JS"));
 console.log(text.replaceAll("JavaScript", "JS"));</code></pre>
 
       <h3>3.6 Removing Extra Spaces</h3>
-      <pre><code>let messy = "   Hello JS   ";
+      <pre><code class="language-javascript">let messy = "   Hello JS   ";
 console.log(messy.trim());
 console.log(messy.trimStart());
 console.log(messy.trimEnd());</code></pre>
 
       <h3>3.7 Splitting & Joining</h3>
-      <pre><code>let data = "apple,banana,grape";
+      <pre><code class="language-javascript">let data = "apple,banana,grape";
 let arr = data.split(",");
 console.log(arr); // ["apple", "banana", "grape"]</code></pre>
 
       <h3>3.8 Repeating</h3>
-      <pre><code>console.log("Hi!".repeat(3)); // "Hi!Hi!Hi!"</code></pre>
+      <pre><code class="language-javascript">console.log("Hi!".repeat(3)); // "Hi!Hi!Hi!"</code></pre>
 
       <h3>3.9 Character Access</h3>
-      <pre><code>let s = "ABC";
+      <pre><code class="language-javascript">let s = "ABC";
 console.log(s.charAt(1));     // "B"
 console.log(s.charCodeAt(1)); // 66</code></pre>
 
       <h3>3.10 Concatenation</h3>
-      <pre><code>let a = "Hello";
+      <pre><code class="language-javascript">let a = "Hello";
 let b = "World";
 console.log(a.concat(" ", b));
 console.log(a + " " + b);
@@ -175,7 +119,7 @@ console.log(num.padStart(3, "0"));
 console.log(num.padEnd(3, "*"));</code></pre>
 
       <h3>3.12 Template Literals</h3>
-      <pre><code>let name = "Sajid";
+      <pre><code class="language-javascript">let name = "Sajid";
 let age = 21;
 console.log(`My name is ${name} and I am ${age} years old.`);</code></pre>
     </section>
@@ -196,4 +140,5 @@ console.log(`My name is ${name} and I am ${age} years old.`);</code></pre>
     JavaScript String Tutorial – Clean and Minimal Glassmorphism Website.
   </footer>
 </body>
+<script src="theme.js"></script>
 </html>

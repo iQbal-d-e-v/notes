@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JavaScript Operators Explained</title>
-<link rel="stylesheet" href="jschSTYLE.css">
+  <link rel="stylesheet" href="jschSTYLE.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
 </head>
+
 <body>
+  <button class="toggle-btn" onclick="toggleTheme()"></button>
   <header>
     <h1>JavaScript Operators</h1>
     <p>
-      In this page, we are going to learn about different types of operators in JavaScript, 
-      how they work, and see examples for each one. Operators are special symbols used to 
+      In this page, we are going to learn about different types of operators in JavaScript,
+      how they work, and see examples for each one. Operators are special symbols used to
       perform operations on values and variables.
     </p>
   </header>
@@ -19,10 +26,10 @@
   <section>
     <h2>1. Arithmetic Operators</h2>
     <p>
-      Arithmetic operators are used to perform basic mathematical operations like addition, 
+      Arithmetic operators are used to perform basic mathematical operations like addition,
       subtraction, multiplication, division, modulus (remainder), and exponentiation.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 let a = 10, b = 3;
 console.log(a + b); // 13 (Addition)
 console.log(a - b); // 7  (Subtraction)
@@ -36,10 +43,10 @@ console.log(a ** b); // 1000 (Exponentiation)
   <section>
     <h2>2. Assignment Operators</h2>
     <p>
-      Assignment operators are used to assign values to variables. They can also 
+      Assignment operators are used to assign values to variables. They can also
       perform operations and assign the result in one step.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 let x = 10;
 x += 5; // x = x + 5 → 15
 x -= 3; // x = x - 3 → 12
@@ -55,7 +62,7 @@ x %= 5; // x = x % 5 → 1
       Comparison operators compare two values and return <code>true</code> or <code>false</code>.
       They are used in conditions.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 console.log(5 == "5");  // true  (value equal, type ignored)
 console.log(5 === "5"); // false (strict equality, type checked)
 console.log(7 != 8);    // true  (not equal)
@@ -71,7 +78,7 @@ console.log(4 <= 2);    // false
       Logical operators are used to combine multiple conditions:
       <b>AND (&&)</b>, <b>OR (||)</b>, and <b>NOT (!)</b>.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 console.log(true && false); // false (both must be true)
 console.log(true || false); // true  (at least one true)
 console.log(!true);         // false (NOT reverses value)
@@ -84,7 +91,7 @@ console.log(!true);         // false (NOT reverses value)
       These operators increase or decrease a value by 1. They can be used in two ways:
       <b>pre</b> (++x, --x) and <b>post</b> (x++, x--).
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 let y = 5;
 console.log(y++); // 5 (returns then increments → y=6)
 console.log(++y); // 7 (increments then returns)
@@ -94,10 +101,10 @@ console.log(++y); // 7 (increments then returns)
   <section>
     <h2 style="color: rgb(255, 0, 0);">6. Ternary Operator</h2>
     <p>
-      A shorthand for if...else. It checks a condition and returns one value if true, 
+      A shorthand for if...else. It checks a condition and returns one value if true,
       and another if false.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 let age = 20;
 let result = (age >= 18) ? "Adult" : "Minor";
 console.log(result); // Adult
@@ -107,11 +114,11 @@ console.log(result); // Adult
   <section>
     <h2>7. Bitwise Operators</h2>
     <p>
-      These operators work at the binary (bit) level: <code>&</code> (AND), 
-      <code>|</code> (OR), <code>^</code> (XOR), <code>~</code> (NOT), 
+      These operators work at the binary (bit) level: <code>&</code> (AND),
+      <code>|</code> (OR), <code>^</code> (XOR), <code>~</code> (NOT),
       <code>&lt;&lt;</code> (left shift), <code>&gt;&gt;</code> (right shift).
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 console.log(5 & 3);  // 1  (0101 & 0011 = 0001)
 console.log(5 | 3);  // 7  (0101 | 0011 = 0111)
 console.log(5 ^ 3);  // 6  (0101 ^ 0011 = 0110)
@@ -124,10 +131,10 @@ console.log(5 >> 1); // 2  (shift right)
   <section>
     <h2>8. Nullish Coalescing (??)</h2>
     <p>
-      The nullish coalescing operator <code>??</code> returns the right-hand value only 
+      The nullish coalescing operator <code>??</code> returns the right-hand value only
       if the left-hand value is <code>null</code> or <code>undefined</code>.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 let name = null;
 console.log(name ?? "Guest"); // Guest
     </code></pre>
@@ -136,10 +143,10 @@ console.log(name ?? "Guest"); // Guest
   <section>
     <h2>9. Optional Chaining (?.)</h2>
     <p>
-      Optional chaining prevents errors when accessing nested object properties that 
+      Optional chaining prevents errors when accessing nested object properties that
       might not exist. Instead of crashing, it returns <code>undefined</code>.
     </p>
-    <pre><code>
+    <pre><code class="language-javascript">
 let user = { profile: { name: "Alex" } };
 console.log(user.profile?.name);   // Alex
 console.log(user.contact?.email);  // undefined (safe, no error)
@@ -150,4 +157,6 @@ console.log(user.contact?.email);  // undefined (safe, no error)
     © 2025 JavaScript Learning Guide. All rights reserved.
   </footer>
 </body>
+<script src="theme.js"></script>
+
 </html>
