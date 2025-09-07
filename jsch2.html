@@ -26,90 +26,507 @@
   <section>
     <h2>1. Arithmetic Operators</h2>
     <p>
-      Arithmetic operators are used to perform basic mathematical operations like addition,
-      subtraction, multiplication, division, modulus (remainder), and exponentiation.
+      Arithmetic operators perform mathematical operations on values.<br>
+      They usually work on numbers, but JavaScript automatically converts other types (like strings) to numbers in many
+      cases.
+    </p>
+
+    <h3>Addition (+)</h3>
+    <p>
+      The <code>+</code> operator is used to add numbers.<br>
+      It also <b>concatenates strings</b> if any operand is a string.
     </p>
     <pre><code class="language-javascript">
+// Number addition
 let a = 10, b = 3;
-console.log(a + b); // 13 (Addition)
-console.log(a - b); // 7  (Subtraction)
-console.log(a * b); // 30 (Multiplication)
-console.log(a / b); // 3.33 (Division)
-console.log(a % b); // 1  (Remainder)
-console.log(a ** b); // 1000 (Exponentiation)
-    </code></pre>
-  </section>
+console.log(a + b); // 13 # adds normally
 
-  <section>
-    <h2>2. Assignment Operators</h2>
+// String concatenation
+console.log("10" + b); // "103" # b converted to string → reason: 
+                      //if any operand is string, + concatenates
+
+// Concatenating 2 strings
+console.log("Hello, " + "World!"); // "Hello, World!" # explicit string concatenation
+  </code></pre>
+    <p># Additional info: <b>+</b> is the only arithmetic operator that can concatenate strings.</p>
+
+    <h3>Subtraction (-)</h3>
     <p>
-      Assignment operators are used to assign values to variables. They can also
-      perform operations and assign the result in one step.
+      Subtracts the right-hand value from the left-hand value.<br>
+      Non-number strings are converted to numbers if possible.
     </p>
     <pre><code class="language-javascript">
-let x = 10;
+console.log(a - b);    // 7 # normal subtraction
+console.log("10" - 3); // 7 # "10" converted to number → reason: - always converts to number
+console.log("hello" - 3); // NaN # cannot convert "hello" → reason: invalid numeric conversion
+  </code></pre>
+
+    <h3>Multiplication (*)</h3>
+    <p>
+      Multiplies two numbers.<br>
+      Strings that represent numbers are automatically converted.<br>
+      Invalid strings give <code>NaN</code>.
+    </p>
+    <pre><code class="language-javascript">
+console.log(a * b);    // 30 # normal multiplication
+console.log("5" * 2);  // 10 # "5" converted to number
+console.log("hello" * 2); // NaN # invalid string → reason: cannot multiply non-numeric string
+  </code></pre>
+
+    <h3>Division (/)</h3>
+    <p>
+      Divides the left operand by the right.<br>
+      Division by zero gives <code>Infinity</code> or <code>-Infinity</code>.<br>
+      Strings are converted if numeric.
+    </p>
+    <pre><code class="language-javascript">
+console.log(a / b);    // 3.3333333333333335 # normal division
+console.log(10 / 0);   // Infinity # division by zero → JS follows IEEE 754
+console.log(-10 / 0);  // -Infinity # negative divided by zero
+console.log("10" / "2"); // 5 # strings converted to numbers
+console.log("hello" / 2); // NaN # invalid string
+  </code></pre>
+
+    <h3>Modulus (%)</h3>
+    <p>
+      Returns the remainder after dividing the left operand by the right.<br>
+      Useful for checking divisibility or cycles.
+    </p>
+    <pre><code class="language-javascript">
+console.log(a % b);  // 1 # remainder of 10 / 3
+console.log(10 % 2); // 0 # divisible exactly
+console.log(7 % 4);  // 3 # 7 divided by 4 leaves remainder 3
+
+// Negative numbers
+console.log(-7 % 3); // -1 # sign follows the dividend → reason: JS keeps left operand sign
+  </code></pre>
+
+    <h3>Exponentiation (**)</h3>
+    <p>
+      Raises the left operand to the power of the right operand.<br>
+      Equivalent to <code>Math.pow()</code>.
+    </p>
+    <pre><code class="language-javascript">
+console.log(a ** b);    // 1000 # 10^3
+console.log(2 ** 4);    // 16 # 2*2*2*2
+console.log(9 ** 0.5);  // 3 # square root → exponent 0.5
+console.log(5 ** -1);   // 0.2 # negative exponent → 1/(5^1)
+  </code></pre>
+    <p># Additional info: <b>**</b> has higher precedence than <b>* / %</b> → reason: evaluated before other arithmetic
+      operations</p>
+  </section>
+  \
+
+<section>
+  <h2>2. Assignment Operators</h2>
+  <p>
+    Assignment operators are used to assign values to variables.<br>
+    They can also perform an operation and assign the result in one step.<br>
+    The simplest assignment is <code>=</code>, but others like <code>+=, -=, *=, /=, %=`</code> are called **compound assignment operators**.
+  </p>
+
+  <h3>Simple Assignment (=)</h3>
+  <p>
+    Assigns the value on the right-hand side to the variable on the left-hand side.
+  </p>
+  <pre><code class="language-javascript">
+let x = 10; // x is assigned 10
+console.log(x); // 10 # simple assignment
+  </code></pre>
+  <p># Important: Always declare variables with <code>let</code> or <code>const</code> to avoid creating global variables → reason: avoids unintended side effects</p>
+
+  <h3>Addition Assignment (+=)</h3>
+  <p>
+    Adds the right-hand value to the variable and assigns the result to the variable.<br>
+    If the variable is a string, it concatenates instead of adding numerically.
+  </p>
+  <pre><code class="language-javascript">
 x += 5; // x = x + 5 → 15
+console.log(x); // 15 # numeric addition
+
+let str = "Hello, ";
+str += "World!";
+console.log(str); // "Hello, World!" # string concatenation → 
+                  //reason: += behaves like + for strings
+  </code></pre>
+
+  <h3>Subtraction Assignment (-=)</h3>
+  <p>
+    Subtracts the right-hand value from the variable and assigns the result to it.<br>
+    Strings are converted to numbers if possible.
+  </p>
+  <pre><code class="language-javascript">
 x -= 3; // x = x - 3 → 12
+console.log(x); // 12 # numeric subtraction
+
+let y = "20";
+y -= 5;
+console.log(y); // 15 # string converted to number → reason: - always converts to number
+  </code></pre>
+
+  <h3>Multiplication Assignment (*=)</h3>
+  <p>
+    Multiplies the variable by the right-hand value and assigns the result.<br>
+    Strings representing numbers are converted automatically.
+  </p>
+  <pre><code class="language-javascript">
 x *= 2; // x = x * 2 → 24
+console.log(x); // 24 # numeric multiplication
+
+let z = "5";
+z *= 3;
+console.log(z); // 15 # string converted to number → reason: * always converts to number
+  </code></pre>
+
+  <h3>Division Assignment (/=)</h3>
+  <p>
+    Divides the variable by the right-hand value and assigns the result.<br>
+    Division by zero returns Infinity or -Infinity. Strings converted if numeric.
+  </p>
+  <pre><code class="language-javascript">
 x /= 4; // x = x / 4 → 6
+console.log(x); // 6
+
+let a = "20";
+a /= 5;
+console.log(a); // 4 # string converted to number
+
+let b = 10;
+b /= 0;
+console.log(b); // Infinity # division by zero → JS follows IEEE 754
+  </code></pre>
+
+  <h3>Modulus Assignment (%=)</h3>
+  <p>
+    Takes the remainder after dividing the variable by the right-hand value and assigns it.<br>
+    Useful for cycles, like looping numbers.
+  </p>
+  <pre><code class="language-javascript">
 x %= 5; // x = x % 5 → 1
-    </code></pre>
-  </section>
+console.log(x); // 1
+
+let n = 14;
+n %= 4;
+console.log(n); // 2 # 14 divided by 4 leaves remainder 2
+  </code></pre>
+
+  <p># Additional info: Compound assignment operators are shorthand for performing an operation and assigning the result at the same time → reason: makes code shorter and easier to read</p>
+</section>
+
+
+<section>
+  <h2>3. Comparison Operators</h2>
+  <p>
+    Comparison operators are used to compare two values.<br>
+    They return <code>true</code> or <code>false</code> based on the comparison.<br>
+    They are often used in conditions for if-statements, loops, and logical operations.
+  </p>
+
+  <h3>Equal to (==)</h3>
+  <p>
+    Checks if the values are equal, but ignores the type.<br>
+    # Important: Type coercion occurs, so a string containing a number can be equal to a number.
+  </p>
+  <pre><code class="language-javascript">
+console.log(5 == "5"); // true
+/*
+  # reason: "5" converted to number 5 → values equal
+*/
+console.log(0 == false); // true
+/*
+  # reason: false converted to 0 → values equal
+*/
+  </code></pre>
+
+  <h3>Strict Equal to (===)</h3>
+  <p>
+    Checks if both value and type are equal.<br>
+    # Important: No type coercion occurs, safer to use for precise comparison.
+  </p>
+  <pre><code class="language-javascript">
+console.log(5 === "5"); // false
+/*
+  # reason: number 5 is not same type as string "5"
+*/
+console.log(10 === 10); // true
+/*
+  # reason: value and type both match
+*/
+  </code></pre>
+
+  <h3>Not Equal (!=)</h3>
+  <p>
+    Checks if values are not equal, ignoring type.<br>
+    # Important: Type coercion occurs similar to ==.
+  </p>
+  <pre><code class="language-javascript">
+console.log(7 != 8); // true
+/*
+  # reason: 7 and 8 are different values
+*/
+console.log(5 != "5"); // false
+/*
+  # reason: "5" converted to number → values equal
+*/
+  </code></pre>
+
+  <h3>Strict Not Equal (!==)</h3>
+  <p>
+    Checks if value or type is not equal.<br>
+    # Important: No type coercion, only true if value or type differ.
+  </p>
+  <pre><code class="language-javascript">
+console.log(7 !== "7"); // true
+/*
+  # reason: types differ → number vs string
+*/
+console.log(10 !== 10); // false
+/*
+  # reason: value and type are same
+*/
+  </code></pre>
+
+  <h3>Greater than (>) and Less than (<)</h3>
+  <p>
+    Compares numeric or string values.<br>
+    # Important: Strings are compared lexicographically (Unicode order).
+  </p>
+  <pre><code class="language-javascript">
+console.log(10 > 6); // true
+/*
+  # reason: 10 is greater than 6
+*/
+console.log(4 < 2); // false
+/*
+  # reason: 4 is not less than 2
+*/
+console.log("apple" > "banana"); // false
+/*
+  # reason: "a" comes before "b" in Unicode → apple < banana
+*/
+  </code></pre>
+
+  <h3>Greater than or equal to (>=) and Less than or equal to (<=)</h3>
+  <p>
+    Checks for greater/less or equality.<br>
+    # Important: Includes equality in comparison.
+  </p>
+  <pre><code class="language-javascript">
+console.log(5 >= 5); // true
+/*
+  # reason: value equals → >= includes equality
+*/
+console.log(3 <= 2); // false
+/*
+  # reason: 3 is greater than 2 → <= checks less than or equal
+*/
+  </code></pre>
+
+  <p># Additional info: Always prefer strict operators (===, !==) to avoid unexpected true/false due to type coercion.</p>
+</section>
+
+
+ <section>
+  <h2>4. Logical Operators</h2>
+  <p>
+    Logical operators are used to combine or invert boolean conditions.<br>
+    Common operators are: <b>AND (&&)</b>, <b>OR (||)</b>, and <b>NOT (!)</b>.<br>
+    They always return a boolean value (<code>true</code> or <code>false</code>) unless used with non-boolean operands (JS allows truthy/falsy evaluation).
+  </p>
+
+  <h3>Logical AND (&&)</h3>
+  <p>
+    Returns <code>true</code> only if both operands are true.<br>
+    # Important: If first operand is false, JS does not evaluate the second (short-circuit).
+  </p>
+  <pre><code class="language-javascript">
+console.log(true && false); 
+/*
+  # result: false
+  # reason: both must be true → second operand ignored if first is false (short-circuit)
+*/
+console.log(true && true); 
+/*
+  # result: true
+  # reason: both operands are true → AND returns true
+*/
+  </code></pre>
+
+  <h3>Logical OR (||)</h3>
+  <p>
+    Returns <code>true</code> if at least one operand is true.<br>
+    # Important: If first operand is true, JS does not evaluate the second (short-circuit).
+  </p>
+  <pre><code class="language-javascript">
+console.log(true || false); 
+/*
+  # result: true
+  # reason: at least one operand is true → OR returns true
+  # short-circuit: second operand ignored if first is true
+*/
+console.log(false || false); 
+/*
+  # result: false
+  # reason: both operands are false → OR returns false
+*/
+  </code></pre>
+
+  <h3>Logical NOT (!)</h3>
+  <p>
+    Inverts the boolean value of an operand.<br>
+    # Important: Converts truthy/falsy values to boolean first, then inverts.
+  </p>
+  <pre><code class="language-javascript">
+console.log(!true); 
+/*
+  # result: false
+  # reason: NOT inverts true → false
+*/
+console.log(!false); 
+/*
+  # result: true
+  # reason: NOT inverts false → true
+*/
+console.log(!0); 
+/*
+  # result: true
+  # reason: 0 is falsy → NOT converts to true
+*/
+console.log(!"Hello"); 
+/*
+  # result: false
+  # reason: non-empty string is truthy → NOT converts to false
+*/
+  </code></pre>
+
+  <p># Additional info: Logical operators are commonly used in conditional statements.<br>
+  # They can also return the actual value (not just boolean) when used with non-boolean values → reason: JS evaluates truthy/falsy and short-circuits.</p>
+</section>
+
 
   <section>
-    <h2>3. Comparison Operators</h2>
-    <p>
-      Comparison operators compare two values and return <code>true</code> or <code>false</code>.
-      They are used in conditions.
-    </p>
-    <pre><code class="language-javascript">
-console.log(5 == "5");  // true  (value equal, type ignored)
-console.log(5 === "5"); // false (strict equality, type checked)
-console.log(7 != 8);    // true  (not equal)
-console.log(7 !== "7"); // true  (strict not equal)
-console.log(10 > 6);    // true
-console.log(4 <= 2);    // false
-    </code></pre>
-  </section>
+  <h2>5. Increment and Decrement Operators</h2>
+  <p>
+    Increment and decrement operators increase or decrease a variable’s value by 1.<br>
+    They can be used in two forms: <b>pre</b> (e.g., ++x, --x) and <b>post</b> (e.g., x++, x--).<br>
+    # Important: The position (pre or post) determines whether the value is changed before or after evaluation.
+  </p>
 
-  <section>
-    <h2>4. Logical Operators</h2>
-    <p>
-      Logical operators are used to combine multiple conditions:
-      <b>AND (&&)</b>, <b>OR (||)</b>, and <b>NOT (!)</b>.
-    </p>
-    <pre><code class="language-javascript">
-console.log(true && false); // false (both must be true)
-console.log(true || false); // true  (at least one true)
-console.log(!true);         // false (NOT reverses value)
-    </code></pre>
-  </section>
-
-  <section>
-    <h2>5. Increment and Decrement</h2>
-    <p>
-      These operators increase or decrease a value by 1. They can be used in two ways:
-      <b>pre</b> (++x, --x) and <b>post</b> (x++, x--).
-    </p>
-    <pre><code class="language-javascript">
+  <h3>Post-Increment (x++)</h3>
+  <p>
+    Increases the variable by 1, but returns the value <b>before</b> incrementing.<br>
+    # Important: The increment happens after the current value is used.
+  </p>
+  <pre><code class="language-javascript">
 let y = 5;
-console.log(y++); // 5 (returns then increments → y=6)
-console.log(++y); // 7 (increments then returns)
-    </code></pre>
-  </section>
+console.log(y++); 
+/*
+  # result: 5
+  # reason: returns current value first → then increments y to 6
+*/
+console.log(y); 
+/*
+  # result: 6
+  # reason: value updated after previous operation
+*/
+  </code></pre>
 
-  <section>
-    <h2 style="color: rgb(255, 0, 0);">6. Ternary Operator</h2>
-    <p>
-      A shorthand for if...else. It checks a condition and returns one value if true,
-      and another if false.
-    </p>
-    <pre><code class="language-javascript">
+  <h3>Pre-Increment (++x)</h3>
+  <p>
+    Increases the variable by 1, and returns the value <b>after</b> incrementing.<br>
+    # Important: The increment happens before the current value is used.
+  </p>
+  <pre><code class="language-javascript">
+let z = 5;
+console.log(++z); 
+/*
+  # result: 6
+  # reason: increments first → then returns updated value
+*/
+  </code></pre>
+
+  <h3>Post-Decrement (x--)</h3>
+  <p>
+    Decreases the variable by 1, but returns the value <b>before</b> decrementing.<br>
+    # Important: The decrement happens after the current value is used.
+  </p>
+  <pre><code class="language-javascript">
+let a = 5;
+console.log(a--); 
+/*
+  # result: 5
+  # reason: returns current value first → then decrements a to 4
+*/
+console.log(a); 
+/*
+  # result: 4
+  # reason: value updated after previous operation
+*/
+  </code></pre>
+
+  <h3>Pre-Decrement (--x)</h3>
+  <p>
+    Decreases the variable by 1, and returns the value <b>after</b> decrementing.<br>
+    # Important: The decrement happens before the current value is used.
+  </p>
+  <pre><code class="language-javascript">
+let b = 5;
+console.log(--b); 
+/*
+  # result: 4
+  # reason: decrements first → then returns updated value
+*/
+  </code></pre>
+
+  <p>
+    # Additional info: Increment and decrement operators are commonly used in loops and iterative calculations.<br>
+    # Pre vs Post determines whether the current operation uses the old value or the updated value → reason: affects expressions where the operator is combined with other operations.
+  </p>
+</section>
+
+
+ <section>
+  <h2 style="color: rgb(255, 0, 0);">6. Ternary Operator</h2>
+  <p>
+    The ternary operator is a shorthand for <code>if...else</code> statements.<br>
+    Syntax: <code>condition ? valueIfTrue : valueIfFalse</code><br>
+    # Important: Useful for concise conditional assignments.
+  </p>
+
+  <h3>Basic Usage</h3>
+  <pre><code class="language-javascript">
 let age = 20;
 let result = (age >= 18) ? "Adult" : "Minor";
-console.log(result); // Adult
-    </code></pre>
-  </section>
+console.log(result); 
+/*
+  # result: "Adult"
+  # reason: age is 20 → condition (age >= 18) is true → valueIfTrue is returned
+  # note: concise replacement for multi-line if...else statement
+*/
+  </code></pre>
+
+  <h3>Real-World Application Example</h3>
+  <p>
+    Imagine a website showing a discount based on user membership.<br>
+    The ternary operator can determine the discount quickly without using if...else.
+  </p>
+  <pre><code class="language-javascript">
+let membershipType = "Premium";
+let discount = (membershipType === "Premium") ? 30 : 10;
+console.log(`Discount: ${discount}%`);
+/*
+  # result: "Discount: 30%"
+  # reason: user is Premium → condition true → 30% discount applied
+  # alternate case: if membershipType was "Basic", discount would be 10%
+  # note: ternary operator makes conditional assignment concise and readable
+*/
+  </code></pre>
+
+  <p>
+    # Additional info: Ternary operator can be nested for multiple conditions,<br>
+    # but readability may decrease → reason: only use nested ternary for simple conditions.
+  </p>
+</section>
 
   <section>
     <h2>7. Bitwise Operators</h2>
@@ -152,6 +569,265 @@ console.log(user.profile?.name);   // Alex
 console.log(user.contact?.email);  // undefined (safe, no error)
     </code></pre>
   </section>
+
+  <section>
+  <h2>10. Additional JavaScript Operator Topics</h2>
+  <p>
+    To become proficient with JavaScript operators, it’s important to understand additional behaviors, type conversions, and less common operators.<br>
+    # These topics go beyond basic arithmetic, comparison, logical, and ternary operators.
+  </p>
+
+  <h3>1. String Concatenation with +</h3>
+  <p>
+    The <code>+</code> operator can be used to concatenate strings.<br>
+    # Important: If any operand is a string, JS converts the other operand to string and concatenates.
+  </p>
+  <pre><code class="language-javascript">
+let text = "Hello, " + "World!";
+console.log(text); 
+/*
+  # result: "Hello, World!"
+  # reason: both are strings → + concatenates
+*/
+
+let value = "Age: " + 25;
+console.log(value); 
+/*
+  # result: "Age: 25"
+  # reason: number 25 converted to string → concatenated with "Age: "
+*/
+  </code></pre>
+
+  <h3>2. Unary + and -</h3>
+  <p>
+    Unary <code>+</code> converts a value to a number.<br>
+    Unary <code>-</code> converts to number and negates it.<br>
+    # Important: Useful for converting strings to numbers.
+  </p>
+  <pre><code class="language-javascript">
+let strNum = "42";
+console.log(+strNum); 
+/*
+  # result: 42 (number)
+  # reason: unary + converts string to number
+*/
+console.log(-strNum); 
+/*
+  # result: -42
+  # reason: unary - converts string to number and negates it
+*/
+  </code></pre>
+
+  <h3>3. Comma Operator (,)</h3>
+  <p>
+    Evaluates multiple expressions and returns the value of the last one.<br>
+    # Important: Useful in for loops or concise assignments.
+  </p>
+  <pre><code class="language-javascript">
+let a = (1, 2, 3);
+console.log(a); 
+/*
+  # result: 3
+  # reason: comma operator evaluates 1, 2, then 3 → returns last value
+*/
+  </code></pre>
+
+  <h3>4. Exponentiation Operator (**)</h3>
+  <p>
+    Performs power calculation: <code>a ** b</code> → a raised to the power b.<br>
+    # Important: Can also be combined with assignment: <code>**=</code>
+  </p>
+  <pre><code class="language-javascript">
+let x = 2;
+x **= 3; 
+console.log(x); 
+/*
+  # result: 8
+  # reason: 2 ** 3 → 2*2*2 = 8, assigned back to x
+*/
+  </code></pre>
+
+  <h3>5. typeof Operator</h3>
+  <p>
+    Returns the type of a variable or value.<br>
+    # Important: Useful for type checking and debugging.
+  </p>
+  <pre><code class="language-javascript">
+console.log(typeof 42); 
+/*
+  # result: "number"
+*/
+console.log(typeof "Hello"); 
+/*
+  # result: "string"
+*/
+console.log(typeof null); 
+/*
+  # result: "object" → historic quirk in JS
+*/
+  </code></pre>
+
+  <h3>6. void Operator</h3>
+  <p>
+    Evaluates an expression and returns <code>undefined</code>.<br>
+    # Important: Mostly used to prevent return values from expressions (e.g., links in HTML).
+  </p>
+  <pre><code class="language-javascript">
+console.log(void 0); 
+/*
+  # result: undefined
+  # reason: void always returns undefined regardless of the expression
+*/
+  </code></pre>
+
+  <h3>7. Operator Precedence & Associativity</h3>
+  <p>
+    Determines the order in which operators are evaluated.<br>
+    # Important: Misunderstanding can lead to unexpected results.
+  </p>
+  <pre><code class="language-javascript">
+console.log(2 + 3 * 4); 
+/*
+  # result: 14
+  # reason: * has higher precedence than + → 3*4=12 → 2+12=14
+*/
+
+console.log((2 + 3) * 4); 
+/*
+  # result: 20
+  # reason: parentheses override precedence → 2+3=5 → 5*4=20
+*/
+  </code></pre>
+
+  <p>
+    # Additional info: Understanding type coercion, truthy/falsy values, and operator precedence is key to mastering JavaScript operators.<br>
+    # Practice combining operators in expressions to become fluent.
+  </p>
+</section>
+
+<section>
+  <h2>11. JavaScript Operator Precedence Table</h2>
+  <p>
+    Operator precedence determines the order in which operations are evaluated.<br>
+    # Important: Higher precedence operators are evaluated before lower ones.<br>
+    # Associativity determines the direction of evaluation when operators have the same precedence.
+  </p>
+
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Precedence</th>
+        <th>Associativity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>()</td>
+        <td>Grouping / Function call</td>
+        <td>21</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>new</td>
+        <td>Create new object</td>
+        <td>20</td>
+        <td>Right → Left</td>
+      </tr>
+      <tr>
+        <td>++x, --x, +, -, ~, !</td>
+        <td>Unary operators (increment, decrement, unary plus/minus, bitwise NOT, logical NOT)</td>
+        <td>19</td>
+        <td>Right → Left</td>
+      </tr>
+      <tr>
+        <td>* / %</td>
+        <td>Multiplication, Division, Modulus</td>
+        <td>18</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>+ -</td>
+        <td>Addition, Subtraction (also string concatenation with +)</td>
+        <td>17</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</td>
+        <td>Bitwise shift operators</td>
+        <td>16</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>&lt; &lt;= &gt; &gt;=</td>
+        <td>Relational comparison</td>
+        <td>15</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>== != === !==</td>
+        <td>Equality / Inequality</td>
+        <td>14</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>&amp;</td>
+        <td>Bitwise AND</td>
+        <td>13</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>^</td>
+        <td>Bitwise XOR</td>
+        <td>12</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>|</td>
+        <td>Bitwise OR</td>
+        <td>11</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>&amp;&amp;</td>
+        <td>Logical AND</td>
+        <td>10</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>||</td>
+        <td>Logical OR</td>
+        <td>9</td>
+        <td>Left → Right</td>
+      </tr>
+      <tr>
+        <td>? :</td>
+        <td>Ternary conditional</td>
+        <td>8</td>
+        <td>Right → Left</td>
+      </tr>
+      <tr>
+        <td>= += -= *= /= %= **=</td>
+        <td>Assignment operators</td>
+        <td>7</td>
+        <td>Right → Left</td>
+      </tr>
+      <tr>
+        <td>,</td>
+        <td>Comma operator</td>
+        <td>6</td>
+        <td>Left → Right</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    # Additional info: Understanding operator precedence avoids unexpected results in complex expressions.<br>
+    # Tip: Use parentheses <code>()</code> to make order explicit and improve readability.
+  </p>
+</section>
+
 
   <footer>
     © 2025 JavaScript Learning Guide. All rights reserved.
