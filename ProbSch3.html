@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handling Small Data – In-Depth Understanding</title>
+  <link rel="stylesheet" href="jschSTYLE.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <script src="theme-toggle.js" defer></script>
+  <style>
+    /* body { font-family: Arial, sans-serif; line-height: 1.6; } */
+    table { border-collapse: collapse; margin: 10px 0; width: 100%; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    /* .chart-container { margin: 20px 0; text-align: center; } */
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleTheme()"></button>
+  <header>
+    <h1>Handling Small Data – In-Depth Understanding</h1>
+  </header>
+
+  <!-- Frequency -->
+  <section>
+    <h2>1️⃣ Frequency</h2>
+    <p><strong>Definition:</strong> Frequency is how many times a data value appears in your dataset.</p>
+    <div class="section-highlight">
+      <strong>Why it matters:</strong>
+      <ul>
+        <li>If some data points appear more often, they carry more weight in understanding the dataset.</li>
+        <li>Helps detect patterns, repetitions, or dominant values.</li>
+      </ul>
+      <strong>Example:</strong> Dataset: 3.88, 3.90, 3.93, 3.88, 3.88<br>
+      3.88 occurs 3 times → frequency = 3<br>
+      3.90 occurs 1 time → frequency = 1
+      <p>💡 Think of frequency as “how popular a value is in your data.”</p>
+    </div>
+  </section>
+
+  <!-- Frequency Table -->
+  <section>
+    <h2>2️⃣ Frequency Table</h2>
+    <p><strong>Definition:</strong> A table summarizing each value and its frequency.</p>
+    <div class="section-highlight">
+      <strong>Why it matters:</strong>
+      <ul>
+        <li>Makes the dataset compact and readable.</li>
+        <li>Easier to analyze patterns without looking at raw data.</li>
+      </ul>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Value</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3.88</td><td>3</td></tr>
+        <tr><td>3.90</td><td>2</td></tr>
+        <tr><td>3.93</td><td>2</td></tr>
+        <tr><td>3.94</td><td>2</td></tr>
+        <tr><td>3.96</td><td>2</td></tr>
+        <tr><td>3.98</td><td>1</td></tr>
+        <tr><td>3.99</td><td>1</td></tr>
+      </tbody>
+    </table>
+    <p>💡 By scanning the table, you can immediately see which values appear most frequently.</p>
+  </section>
+
+  <!-- Relative Frequency -->
+  <section>
+    <h2>3️⃣ Relative Frequency</h2>
+    <p><strong>Definition:</strong> Fraction of total data that a particular value represents.</p>
+    <div class="section-highlight">
+      <strong>Formula:</strong><br>
+      Relative Frequency = Frequency of Value (f) ÷ Total Data Points (n)
+      <br><strong>Why it matters:</strong>
+      <ul>
+        <li>Converts counts into proportions, making it easier to compare values.</li>
+        <li>Allows comparison across datasets of different sizes using percentages.</li>
+      </ul>
+      <strong>Example:</strong> Frequency of 3.88 = 3, Total values = 13<br>
+      Relative frequency = 3 ÷ 13 ≈ 0.2308 (≈ 23%)<br>
+      💡 Think of relative frequency as “the slice of the whole dataset” that a value occupies.
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Value</th>
+          <th>Frequency</th>
+          <th>Relative Frequency (f/n)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3.88</td><td>3</td><td>0.231</td></tr>
+        <tr><td>3.90</td><td>2</td><td>0.154</td></tr>
+        <tr><td>3.93</td><td>2</td><td>0.154</td></tr>
+        <tr><td>3.94</td><td>2</td><td>0.154</td></tr>
+        <tr><td>3.96</td><td>2</td><td>0.154</td></tr>
+        <tr><td>3.98</td><td>1</td><td>0.077</td></tr>
+        <tr><td>3.99</td><td>1</td><td>0.077</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Frequency Polygon -->
+<!-- Frequency Polygon (simple & to the point) -->
+<section>
+  <h2>4️⃣ Frequency Polygon</h2>
+
+  <p><strong>Definition:</strong> A frequency polygon is a line that joins points <em>(x, f)</em>, where <em>x</em> is a data value and <em>f</em> is its frequency.</p>
+
+  <p><strong>Why it matters:</strong></p>
+  <ul>
+    <li>Shows peaks (most frequent values) and gaps quickly.</li>
+    <li>Easy to compare distributions without extra clutter.</li>
+  </ul>
+
+  <p><strong>How to make it (quick steps):</strong></p>
+  <ol>
+    <li>Get the frequency list: value → frequency.</li>
+    <li>Plot points (x₁,f₁), (x₂,f₂), … (xₙ,fₙ) on 2d graph .</li>
+    <li>Join points with straight lines. Optionally extend to the x-axis at both ends to close the polygon.</li>
+  </ol>
+
+  <p><strong>Math view:</strong> each point Pᵢ = (xᵢ, fᵢ). Connect P₁ → P₂ → … → Pₙ.</p>
+
+  <p><strong>Example:</strong> Data → 3.88(3), 3.90(2), 3.93(2) → points: (3.88,3), (3.90,2), (3.93,2).</p>
+
+  <p style="font-style:italic;">Tip: Use the polygon when you want a compact trend-line of frequencies — no bars needed.</p>
+</section>
+
+
+  <!-- Pie Diagram -->
+ <!-- Pie Diagram (expanded but simple) -->
+<section>
+  <h2>5️⃣ Pie Diagram (Circular Representation)</h2>
+
+  <p><strong>Definition:</strong> A pie diagram is a circular chart where each data value is shown as a sector (slice).  
+  The angle of each slice is proportional to its frequency.</p>
+
+  <p><strong>Formula:</strong></p>
+  <p>
+    Sector Angle (θ) = 360° × ( f / n )  
+    • f = frequency of the value  
+    • n = total number of observations
+  </p>
+
+  <p><strong>Why it matters:</strong></p>
+  <ul>
+    <li>Shows proportions of the whole dataset visually.</li>
+    <li>Easy to compare percentages without dealing with numbers.</li>
+  </ul>
+
+  <p><strong>Steps to construct:</strong></p>
+  <ol>
+    <li>Find the relative frequency for each data value: f / n.</li>
+    <li>Multiply each relative frequency by 360° to get the sector angle.</li>
+    <li>Draw a circle → mark the center → draw slices using the calculated angles.</li>
+  </ol>
+
+  <p><strong>Example:</strong></p>
+  <p>
+    Total observations n = 13.  
+    Frequency of 3.88 = 3.  
+    Relative frequency = 3 ÷ 13 ≈ 0.2308.  
+    Sector angle = 360 × 0.2308 ≈ 83°.  
+    → So, 3.88 occupies an 83° slice of the circle.
+  </p>
+
+  <p style="font-style:italic;">Tip: Always check that all sector angles add up to 360°.</p>
+</section>
+
+  <!-- Summary -->
+  <section>
+    <h2>✅ Putting It All Together</h2>
+    <ul>
+      <li>Frequency → Count of data points.</li>
+      <li>Frequency Table → Organize counts neatly.</li>
+      <li>Relative Frequency → Compare counts as fractions or percentages.</li>
+      <li>Frequency Polygon → See trends visually.</li>
+      <li>Pie Diagram → See proportions visually in a circle.</li>
+    </ul>
+    <p>✅ By following these steps, you turn raw data into meaningful insights and can analyze patterns quickly.</p>
+  </section>
+
+  <div id="vScrollbar" class="vertical-scrollbar"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Probability and Statistics | Learning Module</p>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="sidebar.js"></script>
+</body>
+</html>

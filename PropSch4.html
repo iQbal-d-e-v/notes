@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Representation of Large Data</title>
+  <link rel="stylesheet" href="jschSTYLE.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <script src="theme-toggle.js" defer></script>
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleTheme()"></button>
+  
+  <!-- Header -->
+  <header>
+    <h1>📊 How to Present Large Data in Compact Form</h1>
+  </header>
+
+  <!-- Overview -->
+  <section>
+    <h2>Overview</h2>
+    <p>
+      Imagine you have a <strong>giant bag of numbers</strong>—thousands of marks scored by students in an exam.  
+      If I give you the full list, you’ll get lost.  
+      So, in statistics, we don’t just dump data—we <strong>organize</strong> it so that patterns become visible <em>at a glance</em>.
+    </p>
+    <p>
+      There are <strong>three powerful ways</strong> to do this:
+    </p>
+    <ul>
+      <li><strong>Histogram</strong> – like a bar graph for continuous data</li>
+      <li><strong>Ogive (Cumulative Frequency Curve)</strong> – like watching numbers “add up” step by step</li>
+      <li><strong>Stem-and-Leaf Plot</strong> – like a mini-database that keeps original numbers visible</li>
+    </ul>
+  </section>
+
+  <!-- Histogram -->
+  <section>
+    <h2>1️⃣ Histogram</h2>
+    <p>
+      Think of a histogram like a <strong>building skyline</strong> in a city.  
+      Each building represents how many numbers fall into a certain range (class interval).
+    </p>
+    <p><strong>Example:</strong> Suppose exam marks range from <em>0 to 100</em>. We divide them into intervals:</p>
+    <ul>
+      <li>0–19, 20–39, 40–59, 60–79, 80–100</li>
+    </ul>
+    <p>Now, count how many students fall into each group:</p>
+    <ul>
+      <li>0–19 → 2 students</li>
+      <li>20–39 → 5 students</li>
+      <li>40–59 → 10 students</li>
+      <li>60–79 → 8 students</li>
+      <li>80–100 → 5 students</li>
+    </ul>
+    <p>
+      On a graph:
+    </p>
+    <ul>
+      <li><strong>x-axis</strong> = class intervals (marks ranges)</li>
+      <li><strong>y-axis</strong> = frequency (number of students)</li>
+      <li>Draw bars with <em>no gaps</em></li>
+    </ul>
+    <p>
+      ✅ The histogram immediately tells you where most students scored.  
+      (Looks like most are in the <strong>40–59 range</strong>).
+    </p>
+  </section>
+
+  <!-- Ogive -->
+  <section>
+    <h2>2️⃣ Ogive (Cumulative Frequency Curve)</h2>
+    <p>
+      The word <em>ogive</em> may sound fancy, but it’s simple.  
+      It’s like saying: <strong>“How many students scored up to this mark?”</strong>
+    </p>
+    <p><strong>Using the same data:</strong></p>
+    <ul>
+      <li>Up to 19 → 2 students</li>
+      <li>Up to 39 → 2 + 5 = 7 students</li>
+      <li>Up to 59 → 7 + 10 = 17 students</li>
+      <li>Up to 79 → 17 + 8 = 25 students</li>
+      <li>Up to 100 → 25 + 5 = 30 students</li>
+    </ul>
+    <p>
+      Now plot:
+    </p>
+    <ul>
+      <li><strong>x-axis</strong> = upper class boundaries (19, 39, 59, 79, 100)</li>
+      <li><strong>y-axis</strong> = cumulative frequency (2, 7, 17, 25, 30)</li>
+      <li>Connect the points smoothly to form a rising curve</li>
+    </ul>
+    <p>
+      ✅ This curve helps us find <em>medians, quartiles, percentiles</em>—things newspapers use when they say:  
+      <strong>“Top 25% of students scored above 80 marks.”</strong>
+    </p>
+  </section>
+
+  <!-- Stem-and-Leaf -->
+  <section>
+    <h2>3️⃣ Stem-and-Leaf Plot</h2>
+    <p>
+      Now imagine instead of graphing, you want to see the <strong>actual numbers</strong> but in an organized way.  
+      That’s where the <strong>stem-and-leaf</strong> plot comes in.  
+      Think of it like a <strong>tree</strong>: the “stem” is the main trunk (tens digit), and the “leaves” are hanging (ones digit).
+    </p>
+    <p><strong>Example marks:</strong> 19, 22, 25, 42, 45, 50, 65, 77, 90</p>
+    <p>We split them:</p>
+    <ul>
+      <li>Stem = tens digit</li>
+      <li>Leaf = ones digit</li>
+    </ul>
+    <pre>
+Stem | Leaves
+  1  | 9
+  2  | 2, 5
+  4  | 2, 5
+  5  | 0
+  6  | 5
+  7  | 7
+  9  | 0
+    </pre>
+    <p>
+      ✅ With one glance, you can see:
+    </p>
+    <ul>
+      <li>Lowest = 19</li>
+      <li>Highest = 90</li>
+      <li>Cluster around 40–50</li>
+    </ul>
+    <p>
+      It’s like a <strong>histogram without losing the raw data</strong>.
+    </p>
+  </section>
+
+  <!-- Why These Are Powerful -->
+  <section>
+    <h2>🌟 Why These Are Powerful</h2>
+    <ul>
+      <li><strong>Histogram</strong> → shows the shape of data (are scores high, low, spread out?)</li>
+      <li><strong>Ogive</strong> → shows how data accumulates (good for medians/percentiles)</li>
+      <li><strong>Stem-and-Leaf</strong> → compact but detailed snapshot (raw data + grouping)</li>
+    </ul>
+    <p>
+      That’s why newspapers, TV channels, and researchers all use these.  
+      They take <strong>huge piles of data</strong> and convert them into something <em>our brains can digest quickly</em>.
+    </p>
+  </section>
+
+  <!-- Professor's Question -->
+  <section>
+    <h2>🧑‍🏫 Professor's Question</h2>
+    <p>
+      👉 Now let me ask you (like a professor would):  
+      If you were given the marks of your entire class, which method would you prefer to use first—histogram, ogive, or stem-and-leaf—and why?
+    </p>
+  </section>
+
+  <div id="vScrollbar" class="vertical-scrollbar"></div>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Probability and Statistics | Learning Module</p>
+  </footer>
+  
+  <script src="theme.js"></script>
+  <script src="sidebar.js"></script>
+</body>
+</html>
