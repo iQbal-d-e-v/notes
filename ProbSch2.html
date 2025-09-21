@@ -1,108 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive Vertical Scrollbar</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Dummy content sections */
-  section {
-    height: 500px;
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
-    font-size: 24px;
-  }
-
-  /* Vertical scrollbar container */
-  .vertical-scrollbar {
-    position: fixed;
-    right: 0;
-    top: 50px;
-    width: 10px; /* thin scrollbar */
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px 0;
-    z-index: 1000;
-  }
-
-  /* Each section block */
-  .section-block {
-    flex: 1;
-    margin: 2px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: white;
-    font-weight: bold;
-    padding-left: 5px;
-    white-space: nowrap;
-  }
-
-  /* Hidden topic label */
-  .section-block span {
-    opacity: 0;
-    margin-left: 5px;
-    transition: opacity 0.3s;
-    font-size: 14px;
-  }
-
-  /* Hover effect: expand and show topic */
-  .section-block:hover {
-    width: 150px; /* expand horizontally */
-    justify-content: flex-start;
-  }
-
-  .section-block:hover span {
-    opacity: 1;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Fundamentals of Statistics - Module 1</title>
+  <link rel="stylesheet" href="jschSTYLE.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <script src="theme-toggle.js" defer></script>
 </head>
 <body>
+    <button class="toggle-btn" onclick="toggleTheme()"></button>
 
-<!-- Dummy content sections -->
-<section id="section1" style="background:#f1c40f">Introduction</section>
-<section id="section2" style="background:#e67e22">Probability</section>
-<section id="section3" style="background:#e74c3c">Statistics</section>
-<section id="section4" style="background:#9b59b6">Data Analysis</section>
-<section id="section5" style="background:#3498db">Visualization</section>
-<section id="section6" style="background:#1abc9c">Advanced Topics</section>
-<section id="section7" style="background:#2ecc71">Summary</section>
+  <!-- Header -->
+  <header>
+    <h1>Introduction to Fundamentals of Statistics (Module 1)</h1>
+  </header>
 
-<!-- Vertical scrollbar -->
-<div class="vertical-scrollbar" id="vScrollbar">
-  <div class="section-block" style="background:#f1c40f" data-target="section1"><span>Introduction</span></div>
-  <div class="section-block" style="background:#e67e22" data-target="section2"><span>Probability</span></div>
-  <div class="section-block" style="background:#e74c3c" data-target="section3"><span>Statistics</span></div>
-  <div class="section-block" style="background:#9b59b6" data-target="section4"><span>Data Analysis</span></div>
-  <div class="section-block" style="background:#3498db" data-target="section5"><span>Visualization</span></div>
-  <div class="section-block" style="background:#1abc9c" data-target="section6"><span>Advanced Topics</span></div>
-  <div class="section-block" style="background:#2ecc71" data-target="section7"><span>Summary</span></div>
-</div>
+  <!-- 1. Real-World Data -->
+  <section>
+    <h2>1. Real-World Data</h2>
+    <p>Imagine the entire world in 3D.</p>
+    <p>Billions of people live on Earth.</p>
+    <p>Each person has information attached to them, such as:</p>
+    <ul>
+      <li>Age</li>
+      <li>Height and weight</li>
+      <li>Income</li>
+      <li>Education level</li>
+      <li>Health details</li>
+    </ul>
+    <p>This collection of information about people, objects, or events is what we call <strong>data</strong>.</p>
+    <p>💡 But here’s the problem: The world has massive amounts of data. It’s impossible to look at it all at once.</p>
+    <p>That’s why we transform this real-world data into <strong>two-dimensional tables</strong> (rows and columns) so that a computer can store and process it efficiently.</p>
+  </section>
 
-<script>
-  // Scroll to section on click
-  const blocks = document.querySelectorAll('.section-block');
-  blocks.forEach(block => {
-    block.addEventListener('click', () => {
-      const targetId = block.getAttribute('data-target');
-      const targetSection = document.getElementById(targetId);
-      targetSection.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-</script>
+  <!-- 2. Collecting the Required Data -->
+  <section>
+    <h2>2. Collecting the Required Data</h2>
+    <p>From this huge pool of data, you rarely need everything.</p>
+    <p>For example, if you are studying students’ exam scores, you don’t need the income or health details of people.</p>
+    <p>You only collect <strong>relevant data</strong> for your application.</p>
+    <p>This collected data can be:</p>
+    <ul>
+      <li><strong>Small data (sample)</strong>: Data about a small group (e.g., marks of 50 students in one class).</li>
+      <li><strong>Large data (population)</strong>: Data about a very large group (e.g., marks of 10 lakh students across the country).</li>
+    </ul>
+    <p>👉 In statistics, sometimes we study small data (samples), and sometimes large data (entire populations).</p>
+  </section>
 
+  <!-- 3. Representation of Data -->
+  <section>
+    <h2>3. Representation of Data</h2>
+    <p>Once the data is collected, the next step is to represent it clearly so we can understand patterns.</p>
+    <h3>(a) For Small Data</h3>
+    <p>We can use simple charts and tables:</p>
+    <ul>
+      <li><strong>Frequency table</strong>: Shows how often each value occurs.</li>
+      <li><strong>Frequency polygon</strong>: A graph that shows frequencies with connected points.</li>
+      <li><strong>Pie diagram (pie chart)</strong>: Shows proportions using slices of a circle.</li>
+    </ul>
+    <h3>(b) For Large Data</h3>
+    <p>We need stronger methods because the dataset is huge:</p>
+    <ul>
+      <li><strong>Histogram</strong>: A bar-like graph showing how data is spread over intervals.</li>
+      <li><strong>Ogives (cumulative distribution graphs)</strong>: Help us see running totals and percentiles.</li>
+      <li><strong>Stem-and-leaf diagram</strong>: Shows actual data values in a structured form, useful for identifying patterns.</li>
+    </ul>
+  </section>
+
+  <!-- 4. Summarizing Data -->
+  <section>
+    <h2>4. Summarizing Data</h2>
+    <p>Instead of just looking at tables and graphs, we often want a single number to describe data.</p>
+    <p>These are called <strong>measures of central tendency</strong>:</p>
+    <ul>
+      <li><strong>Mean (average)</strong>: The balance point of the data.</li>
+      <li><strong>Median</strong>: The middle value when the data is arranged.</li>
+      <li><strong>Mode</strong>: The most frequent value.</li>
+    </ul>
+    <p>But numbers also vary, so we need <strong>measures of variability</strong>:</p>
+    <ul>
+      <li><strong>Variance</strong>: How far data values spread out from the mean.</li>
+      <li><strong>Standard deviation</strong>: A square-root form of variance, easier to interpret.</li>
+      <li><strong>Sample variance/standard deviation</strong>: Same as above but calculated for a sample.</li>
+    </ul>
+    <p>👉 These measures help us understand how consistent or spread out the data is.</p>
+  </section>
+
+  <!-- 5. Interval Representation and Probability -->
+  <section>
+    <h2>5. Interval Representation and Probability</h2>
+    <p>Sometimes, we group data into intervals (e.g., ages 0–10, 10–20, 20–30…).</p>
+    <p>Here, probability helps us understand how likely data falls into a certain range.</p>
+    <p>One useful concept is <strong>Chebyshev’s Inequality</strong>, which tells us how much data must lie within certain intervals around the mean.</p>
+    <ul>
+      <li>Example: At least 75% of data lies within 2 standard deviations of the mean.</li>
+    </ul>
+    <p>This gives us bounds for probability, even if we don’t know the exact distribution.</p>
+  </section>
+
+  <!-- 6. Normal Distribution -->
+  <section>
+    <h2>6. Normal Distribution</h2>
+    <p>One very common data pattern in the real world is the <strong>normal distribution</strong> (bell-shaped curve).</p>
+    <p>Examples: height of people, exam scores, weight of newborn babies.</p>
+    <ul>
+      <li>Most data lies near the mean (center).</li>
+      <li>Very few data points lie far away (extreme values).</li>
+    </ul>
+    <p>Understanding normal distribution is essential because many statistical methods are based on it.</p>
+  </section>
+
+  <!-- 7. Paired Data – Scatter Plots -->
+  <section>
+    <h2>7. Paired Data – Scatter Plots</h2>
+    <p>Sometimes we study two variables together (e.g., hours studied vs. exam marks).</p>
+    <p>To represent this, we use a <strong>scatter plot</strong>:</p>
+    <ul>
+      <li>One axis shows the first variable.</li>
+      <li>The other axis shows the second variable.</li>
+      <li>Each point represents a pair of values.</li>
+    </ul>
+    <p>Scatter plots help us see relationships, like whether studying more leads to higher marks.</p>
+  </section>
+
+  <!-- 8. Background Knowledge Needed -->
+  <section>
+    <h2>8. Background Knowledge Needed</h2>
+    <p>To fully understand statistics, you need some mathematical foundations:</p>
+    <ul>
+      <li><strong>Set Theory</strong> – Understanding collections of elements.</li>
+      <li><strong>Permutations and Combinations</strong> – Ways to count arrangements and selections.</li>
+      <li><strong>Basic Statistics</strong> – From earlier classes.</li>
+      <li><strong>Basic Probability</strong> – Usually studied in class 11–12, helps calculate chances.</li>
+    </ul>
+  </section>
+
+  <!-- 9. Connecting to Real-Life Applications -->
+  <section>
+    <h2>9. Connecting to Real-Life Applications</h2>
+    <p>Statistics is not just theory—it is widely used in solving real-world problems.</p>
+    <p>For example, in <strong>Operations Research</strong>, statistics and probability are applied to:</p>
+    <ul>
+      <li><strong>Game Theory</strong>: Making decisions in competitive situations.</li>
+      <li><strong>Inventory Control</strong>: Managing stock levels efficiently.</li>
+      <li><strong>Waiting Line (Queue) Theory</strong>: Studying how long customers wait in line.</li>
+      <li><strong>Reliability</strong>: Measuring how reliable a machine or system is.</li>
+    </ul>
+    <p>👉 Another very popular example is the <strong>Stock Market</strong>, where statistics are used to predict trends and validate decisions.</p>
+  </section>
+
+  <!-- Summary -->
+  <section>
+    <h2>🎯 Summary of Module 1</h2>
+    <p>In this module, we will learn:</p>
+    <ul>
+      <li>How to represent data (tables, graphs, diagrams).</li>
+      <li>How to summarize data (mean, median, mode, variance, standard deviation).</li>
+      <li>How to use intervals and inequalities (Chebyshev’s inequality).</li>
+      <li>How to recognize normal distributions.</li>
+      <li>How to visualize paired data with scatter plots.</li>
+    </ul>
+    <p>This is the foundation for everything in probability and statistics. Later, these concepts will help us solve advanced, real-world problems.</p>
+  </section>
+  <div id="vScrollbar" class="vertical-scrollbar"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Probability and Statistics | Learning Module</p>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="sidebar.js"></script>
 </body>
 </html>

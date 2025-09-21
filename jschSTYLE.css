@@ -117,8 +117,8 @@ footer {
 
 .toggle-btn {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: -10px;
     background: var(--section-bg);
     color: var(--text-color);
     border: none;

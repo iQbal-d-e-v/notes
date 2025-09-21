@@ -6,19 +6,19 @@ const body = document.body;
 // If user has light mode saved before, apply it
 if (localStorage.getItem("theme") === "light") {
     body.classList.add("light");
-    toggleBtn.textContent = "🌙 Dark Mode";
+    toggleBtn.textContent = " 🌙 ";
 } else {
-    toggleBtn.textContent = "☀️ Light Mode";
+    toggleBtn.textContent = " ☀️";
 }
 
 toggleBtn.addEventListener("click", () => {
     body.classList.toggle("light");
 
     if (body.classList.contains("light")) {
-        toggleBtn.textContent = "🌙 Dark Mode";
+        toggleBtn.textContent = " 🌙 ";
         localStorage.setItem("theme", "light");
     } else {
-        toggleBtn.textContent = "☀️ Light Mode";
+        toggleBtn.textContent = " ☀️ ";
         localStorage.setItem("theme", "dark");
     }
 });

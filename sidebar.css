@@ -19,7 +19,7 @@
   white-space: nowrap;
   overflow: hidden;
   width: 20px;
-  height: 20px; /* collapsed width */
+  height: 50px; /* collapsed width */
   transition: width 0.3s ease;
   align-self: flex-end; /* right-align */
   display: inline-block; /* make width expand individually */
@@ -34,7 +34,8 @@
 }
 
 .section-block:hover {
-  width: 200px; /* only this block expands */
-  min-height: fit-content;
+  width: 250px; /* only this block expands */
+  min-height: 50px;
+  text-wrap: wrap;
   padding-left: 10px;
 }
