@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Vertical Scrollbar</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Dummy content sections */
+  section {
+    height: 500px;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    font-size: 24px;
+  }
+
+  /* Vertical scrollbar container */
+  .vertical-scrollbar {
+    position: fixed;
+    right: 0;
+    top: 50px;
+    width: 10px; /* thin scrollbar */
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+    z-index: 1000;
+  }
+
+  /* Each section block */
+  .section-block {
+    flex: 1;
+    margin: 2px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    font-weight: bold;
+    padding-left: 5px;
+    white-space: nowrap;
+  }
+
+  /* Hidden topic label */
+  .section-block span {
+    opacity: 0;
+    margin-left: 5px;
+    transition: opacity 0.3s;
+    font-size: 14px;
+  }
+
+  /* Hover effect: expand and show topic */
+  .section-block:hover {
+    width: 150px; /* expand horizontally */
+    justify-content: flex-start;
+  }
+
+  .section-block:hover span {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- Dummy content sections -->
+<section id="section1" style="background:#f1c40f">Introduction</section>
+<section id="section2" style="background:#e67e22">Probability</section>
+<section id="section3" style="background:#e74c3c">Statistics</section>
+<section id="section4" style="background:#9b59b6">Data Analysis</section>
+<section id="section5" style="background:#3498db">Visualization</section>
+<section id="section6" style="background:#1abc9c">Advanced Topics</section>
+<section id="section7" style="background:#2ecc71">Summary</section>
+
+<!-- Vertical scrollbar -->
+<div class="vertical-scrollbar" id="vScrollbar">
+  <div class="section-block" style="background:#f1c40f" data-target="section1"><span>Introduction</span></div>
+  <div class="section-block" style="background:#e67e22" data-target="section2"><span>Probability</span></div>
+  <div class="section-block" style="background:#e74c3c" data-target="section3"><span>Statistics</span></div>
+  <div class="section-block" style="background:#9b59b6" data-target="section4"><span>Data Analysis</span></div>
+  <div class="section-block" style="background:#3498db" data-target="section5"><span>Visualization</span></div>
+  <div class="section-block" style="background:#1abc9c" data-target="section6"><span>Advanced Topics</span></div>
+  <div class="section-block" style="background:#2ecc71" data-target="section7"><span>Summary</span></div>
+</div>
+
+<script>
+  // Scroll to section on click
+  const blocks = document.querySelectorAll('.section-block');
+  blocks.forEach(block => {
+    block.addEventListener('click', () => {
+      const targetId = block.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
